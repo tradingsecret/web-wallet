@@ -23,7 +23,7 @@ const App = () => {
   return (
     <ErrorBoundary>
       <Scrollbars
-        style={{ width: 444, height: 600 }}
+        style={{ width: 400, height: 600 }}
         renderThumbVertical={(props) => <div {...props} className={trackStyle} />}
       >
         <ViewComponent />

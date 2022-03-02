@@ -159,7 +159,7 @@ css`
     }
 
     html {
-      width: 444px;
+      width: 400px;
       height: 600px;
     }
 
