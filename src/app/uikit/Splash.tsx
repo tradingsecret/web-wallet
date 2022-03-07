@@ -54,13 +54,15 @@ export const Splash: React.FC<SplashProps> = ({
   onReturn,
   children,
 }) => (
-  <ContainerStyled blur={blur}>
+  <ContainerStyled
+    blur={blur}
+  >
     {!isNil(onReturn) && <BackButton onClick={onReturn} className={backButtonStyle} />}
     <HeaderText>
       Full Privacy Cryptocurrency Platform with Atomic Swaps by the Mechanics of the Future
     </HeaderText>
     <VersionText>v 1.01</VersionText>
-    <Logo size={size} />
+    <Logo />
     {children}
     <LogoBottom />
   </ContainerStyled>

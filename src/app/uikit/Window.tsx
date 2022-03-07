@@ -6,6 +6,7 @@ import { gotoBack } from '@app/model/view';
 import { isNil } from '@app/core/utils';
 import { MenuIcon } from '@app/icons';
 
+import LogoBottom from '@uikit/LogoBottom';
 import Logo from './Logo';
 import BackButton from './BackButton';
 import Title from './Title';
@@ -33,9 +34,10 @@ function getColor(pallete: string): string {
 const ContainerStyled = styled.div<WindowProps>`
   position: relative;
   min-height: 600px;
-  padding: 130px 30px 30px;
+  //padding: 0 30px 30px;
   text-align: center;
 
+  /*
   &:before {
     content: '';
     position: absolute;
@@ -47,7 +49,7 @@ const ContainerStyled = styled.div<WindowProps>`
     background-image: linear-gradient(
       to top, rgba(3, 91, 143, 0), ${({ pallete }) => getColor(pallete)} 150%
     );
-  }
+  }*/
 `;
 
 const HeadingStyled = styled.div<{ pallete: string }>`
@@ -58,8 +60,8 @@ const HeadingStyled = styled.div<{ pallete: string }>`
   overflow: hidden;
   width: 375px;
   height: 130px;
-  padding-top: 50px;
-  background-color: var(--color-dark-blue);
+  padding-top: 0;
+  //background-color: var(--color-dark-blue);
 
   &:before {
     content: '';
@@ -78,7 +80,7 @@ const HeadingStyled = styled.div<{ pallete: string }>`
 const FrameStyled = styled.div`
   overflow: hidden;
   position: absolute;
-  top: 10px;
+  top: 0;
   left: 50%;
   width: 42px;
   height: 30px;
@@ -99,35 +101,17 @@ export const Window: React.FC<WindowProps> = ({
   pallete = 'default',
   children,
   onPrevious,
-}) => {
-  const [menuVisible, setVisible] = useState(false);
+}) =>
+/* const [menuVisible, setVisible] = useState(false);
 
   const handleBackClick = isNil(onPrevious) ? gotoBack : onPrevious;
   const handleMenuClick = () => setVisible(true);
-  const handleCancelClick = () => setVisible(false);
+  const handleCancelClick = () => setVisible(false); */
 
-  return (
+  (
     <ContainerStyled pallete={pallete}>
-      <HeadingStyled pallete={pallete}>
-        <FrameStyled>
-          <Logo size="icon" />
-        </FrameStyled>
-        <Title variant="heading">{title}</Title>
-      </HeadingStyled>
-      { primary ? (
-        <Button
-          variant="icon"
-          icon={MenuIcon}
-          className={menuButtonStyle}
-          onClick={handleMenuClick}
-        />
-      ) : (
-        <BackButton onClick={handleBackClick} />
-      ) }
-      { menuVisible && <Menu onCancel={handleCancelClick} />}
       {children}
+      <LogoBottom />
     </ContainerStyled>
   );
-};
-
 export default Window;

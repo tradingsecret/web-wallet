@@ -146,6 +146,18 @@ css`
       font-weight: normal;
       font-style: normal;
     }
+    @font-face {
+      font-family: 'agency';
+      src: url('/assets/fonts/Agency/AGENCYR.otf');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'agency';
+      src: url('/assets/fonts/Agency/AGENCYB.otf');
+      font-weight: bold;
+      font-style: normal;
+    }
 
     * {
       box-sizing: border-box;
@@ -156,6 +168,7 @@ css`
     body {
       margin: 0;
       padding: 0;
+      background-image: url("/assets/window_bg.png");
     }
 
     html {

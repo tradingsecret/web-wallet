@@ -15,6 +15,13 @@ import {
   $syncPercent, $syncProgress, $loading, setLoading,
 } from './model';
 
+const ProgressWrapper = styled.div`
+  position: absolute;
+  bottom: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
 const TitleStyled = styled.h2`
   margin: 0;
   font-size: 16px;
@@ -23,7 +30,7 @@ const TitleStyled = styled.h2`
 const SubtitleStyled = styled.h3`
   opacity: 0.5;
   height: 17px;
-  margin: 30px 0;
+  margin: 10px 0;
   color: white;
   font-size: 14px;
   font-weight: 400;
@@ -48,9 +55,11 @@ const Progress = () => {
 
   return (
     <Splash size="small">
-      <TitleStyled>Loading</TitleStyled>
-      <SubtitleStyled>{active && progress}</SubtitleStyled>
-      <ProgressBar active={active} percent={syncPercent} />
+      <ProgressWrapper>
+        <TitleStyled>Loading</TitleStyled>
+        <SubtitleStyled>{active && progress}</SubtitleStyled>
+        <ProgressBar active={active} percent={syncPercent} />
+      </ProgressWrapper>
       {/* <Footer>
         { loading && (
         <Button variant="ghost" icon={CancelIcon} onClick={handleCancelClick}>

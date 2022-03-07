@@ -2,18 +2,82 @@ import React, { useEffect } from 'react';
 import { styled } from '@linaria/react';
 
 import {
-  Window, Button, Footer,
+  Window,
 } from '@uikit';
 
-import {
-  EyeIcon,
-  PassIcon,
-  CopyIcon,
-  DoneIcon,
-} from '@app/icons';
+import { gotoBack, View, setView } from '@app/model/view';
 
-import { View, setView } from '@app/model/view';
 import { generateSeedFx } from '@app/model/base';
+
+const Wrapper = styled.div`
+  padding: 0 30px;
+`;
+
+const Title = styled.div`
+  padding-top: 40px;
+  font-family: "agency",serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+  text-transform: uppercase;
+`;
+
+const SubTitle = styled.div`
+  font-family: "agency",serif;
+  font-weight: normal;
+  font-size: 16px;
+  color: #fff;
+  text-transform: uppercase;
+  padding-top: 10px;
+  letter-spacing: 1px;
+  width: 250px;
+  text-align: center;
+  margin: 0 auto;
+`;
+
+const Notification = styled.div`
+  font-family: "agency",serif;
+  font-weight: normal;
+  font-size: 16px;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: underline;
+  padding-top: 20px;
+  letter-spacing: 2px;
+`;
+
+const ImportantWrapper = styled.div`
+  font-family: "agency",serif;
+  font-weight: bold;
+  font-size: 13px;
+  color: #5fe795;
+  text-transform: uppercase;
+  padding-top: 60px;
+  letter-spacing: 2px;
+`;
+
+const ImportantHead = styled.div`
+  font-size: 25px !important;
+`;
+
+const ImportantListWrapper = styled.div`
+  padding-top: 15px;
+`;
+
+const ImportantList = styled.ul`
+  padding-top: 10px;
+  
+  li {
+    padding-right: 10px;
+    
+    ::before {
+      content: '-';
+      padding-right: 5px;
+    }
+
+    padding-bottom: 15px;
+  }
+`;
 
 const WarningListStyled = styled.ul`
   > li {
@@ -40,44 +104,82 @@ const WarningListStyled = styled.ul`
   }
 `;
 
+const ButtonsWrapper = styled.div`
+  display: flex;
+  gap: 15px;
+`;
+
+const Back = styled.button`
+  background-image: url('/assets/buttons/common/back/default.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  width: 162px;
+  height: 45px;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  
+  &:hover {
+    border: 0;
+    background-image: url('/assets/buttons/common/back/hover.png');
+  }
+`;
+
+const Next = styled.button`
+  background-image: url('/assets/buttons/common/next/default.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  width: 162px;
+  height: 45px;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  
+  &:hover {
+    border: 0;
+    background-image: url('/assets/buttons/common/next/hover.png');
+  }
+`;
+
 const SeedWarning: React.FC = () => {
   useEffect(() => {
     generateSeedFx();
   }, []);
 
   return (
-    <Window title="Create new wallet">
-      <p>
-        If you ever lose your device, you will need this phrase to recover
-        your wallet!
-        <br />
-        {' '}
-        Never type your seed phrase in keychains or password
-        managers.
-        <br />
-        Never save it in your local or remote folders in any form.
-      </p>
-      <WarningListStyled>
-        <li>
-          <EyeIcon width={48} height={34} />
-          <p>Do not let anyone see your seed phrase</p>
-        </li>
-        <li>
-          <PassIcon width={48} height={34} />
-          <p>
-            Never type your seed phrase into password managers or elsewhere
-          </p>
-        </li>
-        <li>
-          <CopyIcon width={48} height={34} />
-          <p>Make at least 2 copies of the phrase in case of emergency</p>
-        </li>
-      </WarningListStyled>
-      <Footer>
-        <Button icon={DoneIcon} type="button" onClick={() => setView(View.SEED_WRITE)}>
-          I understand
-        </Button>
-      </Footer>
+    <Window>
+      <Wrapper>
+        <Title><h1>Create new wallet</h1></Title>
+        <SubTitle>Create new wallet with generating seed phrase.</SubTitle>
+        <Notification>
+          Please save the seed phrase for further
+          wallet restoring if you lose access to it.
+        </Notification>
+        <ImportantWrapper>
+          <ImportantHead>IMPORTANT!</ImportantHead>
+          <ImportantListWrapper>
+            <ImportantList>
+              <li>Don't show anyone your seed phrase</li>
+              <li>
+                Never type your seed phrase into
+                password managers or any other
+                such software
+              </li>
+              <li>Keep your seed phrase in a safe place</li>
+            </ImportantList>
+          </ImportantListWrapper>
+        </ImportantWrapper>
+        <ButtonsWrapper>
+          <Back
+            type="button"
+            onClick={gotoBack}
+          />
+          <Next
+            type="button"
+            onClick={() => setView(View.SEED_WRITE)}
+          />
+        </ButtonsWrapper>
+      </Wrapper>
     </Window>
   );
 };
