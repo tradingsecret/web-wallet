@@ -9,18 +9,9 @@ import { gotoBack, View, setView } from '@app/model/view';
 
 import { generateSeedFx } from '@app/model/base';
 
-const Wrapper = styled.div`
-  padding: 0 30px;
-`;
-
-const Title = styled.div`
-  padding-top: 40px;
-  font-family: "agency",serif;
-  font-weight: bold;
-  font-size: 14px;
-  color: #fff;
-  text-transform: uppercase;
-`;
+import {
+  ButtonsWrapper, Back, Next, Title, Wrapper,
+} from '@pages/intro/create/styles';
 
 const SubTitle = styled.div`
   font-family: "agency",serif;
@@ -101,43 +92,6 @@ const WarningListStyled = styled.ul`
     vertical-align: middle;
     line-height: normal;
     margin: 0;
-  }
-`;
-
-const ButtonsWrapper = styled.div`
-  display: flex;
-  gap: 15px;
-`;
-
-const Back = styled.button`
-  background-image: url('/assets/buttons/common/back/default.png');
-  background-repeat: no-repeat;
-  background-position-x: center;
-  width: 162px;
-  height: 45px;
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  
-  &:hover {
-    border: 0;
-    background-image: url('/assets/buttons/common/back/hover.png');
-  }
-`;
-
-const Next = styled.button`
-  background-image: url('/assets/buttons/common/next/default.png');
-  background-repeat: no-repeat;
-  background-position-x: center;
-  width: 162px;
-  height: 45px;
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  
-  &:hover {
-    border: 0;
-    background-image: url('/assets/buttons/common/next/hover.png');
   }
 `;
 
