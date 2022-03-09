@@ -12,9 +12,19 @@ import {
   DoneIcon,
 } from '@app/icons';
 
+import { styled } from '@linaria/react';
 import {
   $error, startWalletFx, LoginPhase, setLoginPhase,
 } from './model';
+
+const FormStyled = styled.form`
+  text-align: left;
+  width: 250px;
+  position: absolute;
+  top: 360px;
+  left: 50%;
+  transform: translateX(-50%);
+`;
 
 const LoginActive: React.FC = () => {
   const [warningVisible, toggleWarning] = useState(false);
@@ -33,8 +43,7 @@ const LoginActive: React.FC = () => {
   return (
     <>
       <Splash size="small">
-        <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-          <p>Enter your password to access the wallet</p>
+        <FormStyled autoComplete="off" noValidate onSubmit={handleSubmit}>
           <Input
             autoFocus
             name="password"
@@ -59,7 +68,7 @@ const LoginActive: React.FC = () => {
           >
             Restore wallet or create a new one
           </Button>
-        </form>
+        </FormStyled>
       </Splash>
       <Popup
         visible={warningVisible}

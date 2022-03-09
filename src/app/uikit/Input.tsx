@@ -12,8 +12,8 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const ContainerStyled = styled.div<InputProps>`
   position: relative;
-  min-height: 53px;
-  margin-bottom: ${({ margin }) => (margin === 'none' ? 0 : 50)}px;
+    /*min-height: 53px;
+  margin-bottom: ${({ margin }) => (margin === 'none' ? 0 : 50)}px;*/
 `;
 
 const InputStyled = styled.input<InputProps>`
@@ -21,7 +21,7 @@ const InputStyled = styled.input<InputProps>`
   height: 33px;
   line-height: 31px;
   border: none;
-  border-bottom: 2px solid transparent;
+  border-bottom: 1px dashed #5fe795;
   background-color: transparent;
   font-size: 14px;
   color: white;

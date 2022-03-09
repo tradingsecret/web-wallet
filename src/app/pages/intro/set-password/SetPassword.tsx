@@ -12,15 +12,61 @@ import { ArrowLeftIcon, ArrowRightIcon } from '@app/icons';
 import { createWallet } from '@app/core/api';
 import { useStore } from 'effector-react';
 import { $seed } from '@app/model/base';
+import {
+  ButtonsWrapper, Back, Next, Title, Wrapper, NotificationWrapper,
+} from '@pages/intro/create/styles';
 import PasswordStrength from './PasswordStrength';
 
 const FormStyled = styled.form`
   text-align: left;
+  width: 250px;
+  position: absolute;
+  top: 170px;
+  left: 50%;
+  transform: translateX(-50%);
 
   > ul {
     margin-bottom: 30px;
     padding-left: 20px;
   }
+`;
+
+const SubTitle = styled.div`
+  h2 {
+    font-family: "agency",serif;
+    font-weight: normal;
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+`;
+
+const PasswordStrengthWrapper = styled.div`
+  
+`;
+
+const InputWrapper = styled.div`
+  input {
+    font-size: 30px;
+    -webkit-text-security: circle;
+  }
+`;
+
+const InputWrapperSecond = styled(InputWrapper)`
+  margin-top:30px;
+`;
+
+const ButtonsWrapperPassword = styled(ButtonsWrapper)`
+  margin-top: 50px;
+  display: flex;
+`;
+
+const InputLabel = styled.div`
+  font-family: "agency",serif;
+  font-weight: normal;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: #5fe795;
+  text-transform: uppercase;
 `;
 
 const SetPassword = () => {
@@ -63,34 +109,40 @@ const SetPassword = () => {
   return (
     <>
       <Window title="Password" onPrevious={handlePrevious}>
-        <FormStyled onSubmit={handleSubmit}>
-          <Input
-            autoFocus
-            type="password"
-            placeholder="Password"
-            onChange={onPasswordChange}
-          />
-          <PasswordStrength value={pass} />
-          <p>Strong password needs to meet the following requirements:</p>
-          <ul>
-            <li>the length must be at least 10 characters</li>
-            <li>must contain at least one lowercase letter</li>
-            <li>must contain at least one uppercase letter</li>
-            <li>must contain at least one number</li>
-          </ul>
-          <Input
-            type="password"
-            valid={valid}
-            label={error}
-            placeholder="Confirm password"
-            onChange={onConfirmChange}
-          />
-          <Footer>
-            <Button type="submit" icon={ArrowRightIcon} disabled={!ready}>
-              next
-            </Button>
-          </Footer>
-        </FormStyled>
+        <Wrapper>
+          <Title><h1>Password</h1></Title>
+          <SubTitle><h2>CREATE WALLET ACCESS PASSWORD</h2></SubTitle>
+          <FormStyled onSubmit={handleSubmit}>
+            <InputWrapper>
+              <InputLabel>Password</InputLabel>
+              <Input
+                autoFocus
+                type="password"
+                onChange={onPasswordChange}
+              />
+            </InputWrapper>
+            {pass.length > 0
+            && (
+            <PasswordStrengthWrapper v-if={pass.length > 0}>
+              <PasswordStrength value={pass} />
+            </PasswordStrengthWrapper>
+            )}
+            <InputWrapperSecond>
+              <InputLabel>Confirm Password</InputLabel>
+              <Input
+                type="password"
+                valid={valid}
+                label={error}
+                onChange={onConfirmChange}
+              />
+            </InputWrapperSecond>
+            <ButtonsWrapperPassword>
+              <Next type="submit" disabled={!ready}>
+                next
+              </Next>
+            </ButtonsWrapperPassword>
+          </FormStyled>
+        </Wrapper>
       </Window>
       <Popup
         visible={warningVisible}

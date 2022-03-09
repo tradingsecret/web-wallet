@@ -8,6 +8,15 @@ import { useStore } from 'effector-react';
 import { setView, View } from '@app/model/view';
 import SeedList from '@pages/intro/seed';
 
+import {
+  ButtonsWrapper, Next, Title, Wrapper, NotificationWrapper,
+} from '@pages/intro/create/styles';
+import { styled } from '@linaria/react';
+
+const ButtonsWrapperConfirmation = styled.div`
+  margin-top: 20px;
+`;
+
 const SEED_CONFIRM_COUNT = 6;
 
 const SeedConfirm: React.FC = () => {
@@ -44,21 +53,27 @@ const SeedConfirm: React.FC = () => {
   };
 
   return (
-    <Window title="Confirm seed phrase" onPrevious={handlePrevious}>
-      <p>
-        Your seed phrase is the access key to all the funds in your wallet.
-        Print or write down the phrase to keep it in a safe or in a locked
-        vault. Without the phrase you will not be able to recover your
-        money.
-      </p>
-      <form autoComplete="off" onSubmit={handleSubmit}>
-        <SeedList indexByValue data={ids} errors={errors} onInput={handleInput} />
-        <Footer>
-          <Button type="submit" disabled={!valid} icon={ArrowRightIcon}>
-            next
-          </Button>
-        </Footer>
-      </form>
+    <Window onPrevious={handlePrevious}>
+      <Wrapper>
+        <Title><h1>Confirm seed phrase</h1></Title>
+        <NotificationWrapper>
+          <p>
+            Your seed phrase is the access key to all the funds in your wallet.
+            Print or write down the phrase to keep it in a safe or in a locked
+            vault. Without the phrase you will not be able to recover your
+            money.
+          </p>
+        </NotificationWrapper>
+        <form autoComplete="off" onSubmit={handleSubmit}>
+          <SeedList indexByValue data={ids} errors={errors} onInput={handleInput} />
+          <ButtonsWrapperConfirmation>
+            <Next
+              type="submit"
+              disabled={!valid}
+            />
+          </ButtonsWrapperConfirmation>
+        </form>
+      </Wrapper>
     </Window>
   );
 };

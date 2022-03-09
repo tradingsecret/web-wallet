@@ -4,6 +4,16 @@ export const Wrapper = styled.div`
   padding: 0 30px;
 `;
 
+export const NotificationWrapper = styled.div`
+  p {
+    font-family: "agency",serif;
+    font-weight: normal;
+    font-size: 12px;
+    color: #fff;
+    text-transform: uppercase;
+  }
+`;
+
 export const Title = styled.div`
   padding-top: 40px;
   font-family: "agency",serif;
@@ -16,6 +26,7 @@ export const Title = styled.div`
 export const ButtonsWrapper = styled.div`
   display: flex;
   gap: 15px;
+  justify-content: center;
 `;
 
 export const Back = styled.button`

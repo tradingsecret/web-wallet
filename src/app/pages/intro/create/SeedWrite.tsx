@@ -9,7 +9,7 @@ import { View, setView, gotoBack } from '@app/model/view';
 import { $seed } from '@app/model/base';
 
 import {
-  ButtonsWrapper, Back, Next, Title, Wrapper,
+  ButtonsWrapper, Back, Next, Title, Wrapper, NotificationWrapper,
 } from '@pages/intro/create/styles';
 
 import {
@@ -43,16 +43,6 @@ const SeedListStyled = styled.ol`
       height: 20px;
       margin: 5px 10px 5px 9px;
       text-align: center;
-  }
-`;
-
-const NotificationWrapper = styled.div`
-  p {
-    font-family: "agency",serif;
-    font-weight: normal;
-    font-size: 12px;
-    color: #fff;
-    text-transform: uppercase;
   }
 `;
 
