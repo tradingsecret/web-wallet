@@ -19,6 +19,7 @@ import { css } from '@linaria/core';
 import { $assets, $transactions } from '@app/model/wallet';
 
 import { Transaction } from '@app/core/types';
+import { Wrapper } from '@pages/main/styles';
 import Assets from './Assets';
 import Transactions from './Transactions';
 
@@ -57,6 +58,7 @@ const ActionsStyled = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 10px -14px 0;
+  padding: 20px;
 
   > button {
     margin: 0 4px !important;
@@ -102,20 +104,22 @@ const Wallet = () => {
 
   return (
     <Window title="Wallet" primary>
-      <ActionsStyled>
-        <Button pallete="purple" icon={ArrowUpIcon} onClick={gotoSend}>
-          send
-        </Button>
-        <Button pallete="blue" icon={ArrowDownIcon} onClick={gotoReceive}>
-          receive
-        </Button>
-      </ActionsStyled>
-      <Section title="Assets">
-        <Assets data={assets} />
-      </Section>
-      <Section title="Transactions">
-        <Transactions data={sliced} />
-      </Section>
+      <Wrapper>
+        <ActionsStyled>
+          <Button pallete="purple" icon={ArrowUpIcon} onClick={gotoSend}>
+            send
+          </Button>
+          <Button pallete="blue" icon={ArrowDownIcon} onClick={gotoReceive}>
+            receive
+          </Button>
+        </ActionsStyled>
+        <Section title="Assets">
+          <Assets data={assets} />
+        </Section>
+        <Section title="Transactions">
+          <Transactions data={sliced} />
+        </Section>
+      </Wrapper>
     </Window>
   );
 };

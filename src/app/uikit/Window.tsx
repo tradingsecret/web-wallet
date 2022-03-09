@@ -101,17 +101,27 @@ export const Window: React.FC<WindowProps> = ({
   pallete = 'default',
   children,
   onPrevious,
-}) =>
-/* const [menuVisible, setVisible] = useState(false);
+}) => {
+  const [menuVisible, setVisible] = useState(false);
 
   const handleBackClick = isNil(onPrevious) ? gotoBack : onPrevious;
   const handleMenuClick = () => setVisible(true);
-  const handleCancelClick = () => setVisible(false); */
+  const handleCancelClick = () => setVisible(false);
 
-  (
+  return (
     <ContainerStyled pallete={pallete}>
+      { primary && (
+        <Button
+          variant="icon"
+          icon={MenuIcon}
+          className={menuButtonStyle}
+          onClick={handleMenuClick}
+        />
+      )}
+      {menuVisible && <Menu onCancel={handleCancelClick} />}
       {children}
       <LogoBottom />
     </ContainerStyled>
   );
+};
 export default Window;

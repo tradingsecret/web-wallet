@@ -5,15 +5,15 @@ import { ArrowRightIcon } from '@app/icons';
 
 import { $ids, $words, generateSeedFx } from '@app/model/base';
 import { useStore } from 'effector-react';
-import { setView, View } from '@app/model/view';
+import { gotoBack, setView, View } from '@app/model/view';
 import SeedList from '@pages/intro/seed';
 
 import {
-  ButtonsWrapper, Next, Title, Wrapper, NotificationWrapper,
+  ButtonsWrapper, Next, Title, Wrapper, NotificationWrapper, Back,
 } from '@pages/intro/create/styles';
 import { styled } from '@linaria/react';
 
-const ButtonsWrapperConfirmation = styled.div`
+const ButtonsWrapperConfirmation = styled(ButtonsWrapper)`
   margin-top: 20px;
 `;
 
@@ -64,12 +64,16 @@ const SeedConfirm: React.FC = () => {
             money.
           </p>
         </NotificationWrapper>
-        <form autoComplete="off" onSubmit={handleSubmit}>
+        <form autoComplete="off" onSubmit={handleSubmit} noValidate>
           <SeedList indexByValue data={ids} errors={errors} onInput={handleInput} />
           <ButtonsWrapperConfirmation>
+            <Back
+              type="button"
+              onClick={gotoBack}
+            />
             <Next
               type="submit"
-              disabled={!valid}
+              disabled={!!valid}
             />
           </ButtonsWrapperConfirmation>
         </form>

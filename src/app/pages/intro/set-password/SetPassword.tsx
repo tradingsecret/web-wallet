@@ -4,7 +4,9 @@ import { styled } from '@linaria/react';
 import {
   Window, Button, Input, Footer, Popup,
 } from 'app/uikit';
-import { View, setView, gotoProgress } from '@app/model/view';
+import {
+  View, setView, gotoProgress, gotoBack,
+} from '@app/model/view';
 import { makeOnChange } from '@core/utils';
 
 import { ArrowLeftIcon, ArrowRightIcon } from '@app/icons';
@@ -19,7 +21,6 @@ import PasswordStrength from './PasswordStrength';
 
 const FormStyled = styled.form`
   text-align: left;
-  width: 250px;
   position: absolute;
   top: 170px;
   left: 50%;
@@ -29,6 +30,10 @@ const FormStyled = styled.form`
     margin-bottom: 30px;
     padding-left: 20px;
   }
+`;
+const FieldsWrapper = styled.div`
+  width: 250px;
+  margin: 0 auto;
 `;
 
 const SubTitle = styled.div`
@@ -113,33 +118,37 @@ const SetPassword = () => {
           <Title><h1>Password</h1></Title>
           <SubTitle><h2>CREATE WALLET ACCESS PASSWORD</h2></SubTitle>
           <FormStyled onSubmit={handleSubmit}>
-            <InputWrapper>
-              <InputLabel>Password</InputLabel>
-              <Input
-                autoFocus
-                type="password"
-                onChange={onPasswordChange}
-              />
-            </InputWrapper>
-            {pass.length > 0
+            <FieldsWrapper>
+              <InputWrapper>
+                <InputLabel>Password</InputLabel>
+                <Input
+                  autoFocus
+                  type="password"
+                  onChange={onPasswordChange}
+                />
+              </InputWrapper>
+              {pass.length > 0
             && (
             <PasswordStrengthWrapper v-if={pass.length > 0}>
               <PasswordStrength value={pass} />
             </PasswordStrengthWrapper>
             )}
-            <InputWrapperSecond>
-              <InputLabel>Confirm Password</InputLabel>
-              <Input
-                type="password"
-                valid={valid}
-                label={error}
-                onChange={onConfirmChange}
-              />
-            </InputWrapperSecond>
+              <InputWrapperSecond>
+                <InputLabel>Confirm Password</InputLabel>
+                <Input
+                  type="password"
+                  valid={valid}
+                  label={error}
+                  onChange={onConfirmChange}
+                />
+              </InputWrapperSecond>
+            </FieldsWrapper>
             <ButtonsWrapperPassword>
-              <Next type="submit" disabled={!ready}>
-                next
-              </Next>
+              <Back
+                type="button"
+                onClick={gotoBack}
+              />
+              <Next type="submit" disabled={!ready} />
             </ButtonsWrapperPassword>
           </FormStyled>
         </Wrapper>
