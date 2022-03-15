@@ -31,7 +31,7 @@ const Rate: React.FC<Props> = ({
   return (
     <Ratetyled className={className}>
       {sign}
-      { toUSD(amount, rate) }
+      {rate && rate.rate && toUSD(amount, rate.rate) }
     </Ratetyled>
   );
 };

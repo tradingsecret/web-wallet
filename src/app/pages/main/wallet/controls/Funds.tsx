@@ -1,7 +1,10 @@
 import React from 'react';
 import { styled } from '@linaria/react';
 import { AssetTotal } from '@model/wallet';
-import { fromGroths } from '@core/utils';
+import { fromGroths, toUSD } from '@core/utils';
+import { useStore } from 'effector-react';
+import { $rate } from '@model/rates';
+import { css } from '@linaria/core';
 
 interface AssetsProps {
   data: AssetTotal[];
@@ -71,20 +74,38 @@ const USDAmount = styled.div`
   text-align: right;
 `;
 
-export const Funds: React.FC<AssetsProps> = ({ data }) => (
-  <FundsWrap>
-    {data.filter((asset) => asset.asset_id === 0).map(({ asset_id, available, metadata_pairs }) => (
-      <FundsStyled>
-        <FundsStyledLeft>
-          <Currency>ARC</Currency>
-          <Amount>{fromGroths(available)}</Amount>
-        </FundsStyledLeft>
-        <FundsStyledRight>
-          <Rate>13.5</Rate>
-          <USDAmount>1000 USD</USDAmount>
-        </FundsStyledRight>
-        <div className="arrow" />
-      </FundsStyled>
-    ))}
-  </FundsWrap>
-);
+const rateUp = css`
+  color: green;
+`;
+
+const rateDown = css`
+  color: red;
+`;
+
+export const Funds: React.FC<AssetsProps> = ({ data }) => {
+  const rates = useStore($rate);
+
+  return (
+    <FundsWrap>
+      {data.filter((asset) => asset.asset_id === 0)
+        .map(({ asset_id, available, metadata_pairs }) => (
+          <FundsStyled>
+            <FundsStyledLeft>
+              <Currency>ARC</Currency>
+              <Amount>{fromGroths(available)}</Amount>
+            </FundsStyledLeft>
+            {rates && rates.rate && (
+            <FundsStyledRight>
+              <Rate className={`${rates.ratePrevious > rates.rate ? rateDown : rateUp}`}>{ rates.rate }</Rate>
+              <USDAmount>
+                { toUSD(fromGroths(available), rates.rate) }
+                {' '}
+              </USDAmount>
+            </FundsStyledRight>
+            ) }
+            <div className="arrow" />
+          </FundsStyled>
+        ))}
+    </FundsWrap>
+  );
+};

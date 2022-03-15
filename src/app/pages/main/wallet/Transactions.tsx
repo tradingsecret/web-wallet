@@ -7,7 +7,6 @@ import { AssetLabel, StatusLabel } from '@app/uikit';
 import { isNil } from '@app/core/utils';
 
 const ListStyled = styled.ul`
-  margin: 0 -20px;
 `;
 
 interface TransactionsProps {

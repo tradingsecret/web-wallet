@@ -9,7 +9,6 @@ import {
   fromGroths, getSign, isNil, truncate,
 } from '@app/core/utils';
 import { Transaction } from '@app/core/types';
-import AssetIcon from './AssetIcon';
 import Rate from './Rate';
 
 interface AssetLabelProps extends Transaction {
@@ -65,7 +64,6 @@ const AssetLabel: React.FC<AssetLabelProps> = ({
 
   return (
     <ContainerStyled>
-      <AssetIcon asset_id={asset_id} className={iconClassName} />
       <AmountStyled>{ label }</AmountStyled>
       <Rate value={amount} income={income} className={rateStyle} />
     </ContainerStyled>

@@ -21,7 +21,6 @@ const SectionStyled = styled.div`
 
 const SectionGrayStyled = styled.div`
   position: relative;
-  margin: 0 -30px;
   margin-bottom: 20px;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.05);

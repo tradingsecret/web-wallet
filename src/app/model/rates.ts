@@ -6,23 +6,23 @@ export const FEE_DEFAULT = 100000;
 
 const FETCH_INTERVAL = 310000;
 
-const API_URL = 'https://api.coingecko.com/api/v3/simple/price';
-const RATE_PARAMS = 'ids=beam&vs_currencies=usd';
+const API_URL = 'https://insiderprotocol.com/api/external/imperium/rates';
+// const API_URL = 'https://api.coingecko.com/api/v3/simple/price';
+// const RATE_PARAMS = 'ids=beam&vs_currencies=usd';
 
 interface RateResponse {
-  beam: {
-    usd: number;
-  };
+  ratePrevious: number;
+  rate: number;
 }
 
 export const getRateFx = createEffect(async () => {
-  const response = await fetch(`${API_URL}?${RATE_PARAMS}`);
+  const response = await fetch(API_URL);
   const promise: Promise<RateResponse> = response.json();
   return promise;
 });
 
 export const $rate = restore(
-  getRateFx.doneData.map((data) => data.beam.usd), null,
+  getRateFx.doneData.map((data) => data), null,
 );
 
 getRateFx.doneData.watch(() => setTimeout(getRateFx, FETCH_INTERVAL));

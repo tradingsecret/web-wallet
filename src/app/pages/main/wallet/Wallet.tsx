@@ -125,6 +125,7 @@ const Wallet = () => {
         <Tabs activeTab={activeTab} selected={selectedHandler} />
       </MainWrapper>
       {activeTab === WalletTab.funds && <Funds data={assets} /> }
+      {activeTab === WalletTab.transactions && <Transactions data={sliced} /> }
     </Window>
   );
 };
