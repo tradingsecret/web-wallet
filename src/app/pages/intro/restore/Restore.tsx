@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useStore } from 'effector-react';
 
-import { View, setView } from '@app/model/view';
+import { View, setView, gotoBack } from '@app/model/view';
 import { setSeed } from '@app/model/base';
 import { Button, Footer, Window } from '@app/uikit';
 import SeedList from '@pages/intro/seed';
+import {
+  ButtonsWrapper, Next, Title, Wrapper, NotificationWrapper, Back,
+} from '@pages/intro/styles';
 
 import {
   $cache,
@@ -18,6 +21,7 @@ const Restore: React.FC = () => {
   const errors = useStore($errors);
   const cache = useStore($cache);
   const valid = useStore($valid);
+  const formRef = useRef(null);
 
   const handleSubmit: React.ChangeEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
@@ -35,18 +39,22 @@ const Restore: React.FC = () => {
 
   return (
     <Window title="Restore wallet">
-      <p>Type in your seed phrase</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
-        <SeedList
-          data={errors}
-          initial={cache}
-          onInput={onInput}
-        />
-        <Footer>
-          <Button type="submit" disabled={!valid}>
-            Submit
-          </Button>
-        </Footer>
+        <Wrapper>
+          <Title><h1>Type in your seed phrase</h1></Title>
+          <SeedList
+            data={errors}
+            initial={cache}
+            onInput={onInput}
+          />
+        </Wrapper>
+        <ButtonsWrapper>
+          <Back
+            type="button"
+            onClick={gotoBack}
+          />
+          <Next disabled={!valid} type="submit" />
+        </ButtonsWrapper>
       </form>
     </Window>
   );

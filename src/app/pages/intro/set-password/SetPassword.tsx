@@ -16,7 +16,7 @@ import { useStore } from 'effector-react';
 import { $seed } from '@app/model/base';
 import {
   ButtonsWrapper, Back, Next, Title, Wrapper, NotificationWrapper,
-} from '@pages/intro/create/styles';
+} from '@pages/intro/styles';
 import PasswordStrength from './PasswordStrength';
 
 const FormStyled = styled.form`
@@ -143,15 +143,15 @@ const SetPassword = () => {
                 />
               </InputWrapperSecond>
             </FieldsWrapper>
-            <ButtonsWrapperPassword>
-              <Back
-                type="button"
-                onClick={gotoBack}
-              />
-              <Next type="submit" disabled={!ready} />
-            </ButtonsWrapperPassword>
           </FormStyled>
         </Wrapper>
+        <ButtonsWrapper>
+          <Back
+            type="button"
+            onClick={gotoBack}
+          />
+          <Next type="submit" disabled={!ready} onClick={handleSubmit} />
+        </ButtonsWrapper>
       </Window>
       <Popup
         visible={warningVisible}

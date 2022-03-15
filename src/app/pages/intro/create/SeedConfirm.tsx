@@ -10,12 +10,8 @@ import SeedList from '@pages/intro/seed';
 
 import {
   ButtonsWrapper, Next, Title, Wrapper, NotificationWrapper, Back,
-} from '@pages/intro/create/styles';
+} from '@pages/intro/styles';
 import { styled } from '@linaria/react';
-
-const ButtonsWrapperConfirmation = styled(ButtonsWrapper)`
-  margin-top: 20px;
-`;
 
 const SEED_CONFIRM_COUNT = 6;
 
@@ -66,18 +62,19 @@ const SeedConfirm: React.FC = () => {
         </NotificationWrapper>
         <form autoComplete="off" onSubmit={handleSubmit} noValidate>
           <SeedList indexByValue data={ids} errors={errors} onInput={handleInput} />
-          <ButtonsWrapperConfirmation>
-            <Back
-              type="button"
-              onClick={gotoBack}
-            />
-            <Next
-              type="submit"
-              disabled={!!valid}
-            />
-          </ButtonsWrapperConfirmation>
         </form>
       </Wrapper>
+      <ButtonsWrapper>
+        <Back
+          type="button"
+          onClick={gotoBack}
+        />
+        <Next
+          type="submit"
+          onClick={handleSubmit}
+          disabled={!!valid}
+        />
+      </ButtonsWrapper>
     </Window>
   );
 };

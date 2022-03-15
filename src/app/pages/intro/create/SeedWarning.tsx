@@ -11,7 +11,7 @@ import { generateSeedFx } from '@app/model/base';
 
 import {
   ButtonsWrapper, Back, Next, Title, Wrapper,
-} from '@pages/intro/create/styles';
+} from '@pages/intro/styles';
 
 const SubTitle = styled.div`
   font-family: "agency",serif;
@@ -123,17 +123,17 @@ const SeedWarning: React.FC = () => {
             </ImportantList>
           </ImportantListWrapper>
         </ImportantWrapper>
-        <ButtonsWrapper>
-          <Back
-            type="button"
-            onClick={gotoBack}
-          />
-          <Next
-            type="button"
-            onClick={() => setView(View.SEED_WRITE)}
-          />
-        </ButtonsWrapper>
       </Wrapper>
+      <ButtonsWrapper>
+        <Back
+          type="button"
+          onClick={gotoBack}
+        />
+        <Next
+          type="button"
+          onClick={() => setView(View.SEED_WRITE)}
+        />
+      </ButtonsWrapper>
     </Window>
   );
 };

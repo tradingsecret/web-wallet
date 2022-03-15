@@ -1,6 +1,7 @@
 import { styled } from '@linaria/react';
 
 export const Wrapper = styled.div`
+  position: relative;
   padding: 0 30px;
 `;
 
@@ -24,9 +25,13 @@ export const Title = styled.div`
 `;
 
 export const ButtonsWrapper = styled.div`
+  position: absolute;
+  bottom: 80px;
   display: flex;
   gap: 15px;
   justify-content: center;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 export const Back = styled.button`

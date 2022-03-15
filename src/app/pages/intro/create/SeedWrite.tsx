@@ -10,7 +10,7 @@ import { $seed } from '@app/model/base';
 
 import {
   ButtonsWrapper, Back, Next, Title, Wrapper, NotificationWrapper,
-} from '@pages/intro/create/styles';
+} from '@pages/intro/styles';
 
 import {
   DoneIcon,
@@ -86,17 +86,17 @@ const SeedWrite: React.FC = () => {
             <li key={index}>{value}</li>
             ))}
           </SeedListStyled>
-          <ButtonsWrapper>
-            <Back
-              type="button"
-              onClick={() => setView(View.SEED_WARNING)}
-            />
-            <Next
-              type="button"
-              onClick={() => toggleWarning(true)}
-            />
-          </ButtonsWrapper>
         </Wrapper>
+        <ButtonsWrapper>
+          <Back
+            type="button"
+            onClick={() => setView(View.SEED_WARNING)}
+          />
+          <Next
+            type="button"
+            onClick={() => toggleWarning(true)}
+          />
+        </ButtonsWrapper>
       </Window>
       <Popup
         visible={warningVisible}

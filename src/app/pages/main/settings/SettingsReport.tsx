@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Window } from 'app/uikit';
 import { View, setView } from '@app/model/view';
 import { styled } from '@linaria/react';
-import { ReportResponse, SendReport } from '@model/report';
+import { SendReport } from '@model/report';
 
 const Title = styled.div`
   font-family: "agency",serif;
@@ -165,28 +165,3 @@ const SettingsReport = () => {
 };
 
 export default SettingsReport;
-
-/**
- *
- *         <TextareaWrap>
- *           <Textarea />
- *         </TextareaWrap>
- * <WriteSendButton />
- * <ReportStyled>
- *         <p>To report a problem:</p>
- *         <p>1. Click “Save wallet logs” and choose</p>
- *         <p>a destination folder for log archive.</p>
- *         <p>2. Send email to
- *             <LinkStyled onClick={() => mailClicked()}>support@beam.mw</LinkStyled>
- *             or open a ticket in
- *             <LinkStyled onClick={() => githubClicked()}>Github</LinkStyled>.</p>
- *         <p>3. Don’t forget to attach logs archive.</p>
- *       </ReportStyled>
- *       <Button
- *           type="button"
- *           icon={SaveIcon}
- *           onClick={() => saveLogsclicked()}
- *         >
- *           save wallet logs
- *         </Button>
- */
