@@ -1,13 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Window } from 'app/uikit';
 import { View, setView } from '@app/model/view';
-import { useStore } from 'effector-react';
 import { styled } from '@linaria/react';
-import * as extensionizer from 'extensionizer';
-import JSZip from 'jszip';
-import { saveAs } from 'file-saver';
-import { $logs } from './model';
+import { ReportResponse, SendReport } from '@model/report';
 
 const Title = styled.div`
   font-family: "agency",serif;
@@ -32,8 +28,73 @@ const Email = styled.a`
   text-decoration: underline;
 `;
 
-const WriteButtonWrapper = styled.div`
-  padding-top: 15px;
+const WriteAreaWrap = styled.div`
+  width: 374px;
+  height: 300px;
+  margin: 0 auto;
+  background: url("/assets/settings/report/textarea.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+`;
+
+const TextareaWrap = styled.div`
+    display: block;
+    height: 100%;
+    padding-top: 50px;
+`;
+
+const SuccessMessage = styled.div`
+    color: green;
+`;
+
+const ErrorMessage = styled.div`
+    color: red;
+`;
+
+const Textarea = styled.textarea`
+    width: calc(100% - 100px);
+    height: calc(100% - 115px);
+    background: transparent;
+    resize: none;
+    border: none;
+    color: #fff;
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 10px;
+  }
+`;
+
+const WriteSendButton = styled.button`
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 162px;
+  height: 45px;
+  background-size: contain;
+  border: 0;
+  cursor: pointer;
+
+  background: url("/assets/settings/report/send_btn_default.png");
+
+  :hover {
+    background: url("/assets/settings/report/send_btn_hover.png");
+  }
 `;
 
 const WriteButton = styled.button`
@@ -42,6 +103,7 @@ const WriteButton = styled.button`
   background-size: contain;
   border: 0;
   cursor: pointer;
+  margin-top: 20px;
 
   background: url("/assets/settings/report/write_btn_default.png");
 
@@ -51,34 +113,30 @@ const WriteButton = styled.button`
 `;
 
 const SettingsReport = () => {
-  // const logs = useStore($logs);
+  const [showForm, setShowForm] = useState(false);
+  const [message, setMessage] = useState('');
+  const [success, setSuccess] = useState(null);
+  const [error, setError] = useState(null);
 
   const handlePrevious: React.MouseEventHandler = () => {
     setView(View.SETTINGS);
   };
 
-  /*
-  const mailClicked = () => {
-    const mailText = 'mailto:support@beam.mw';
-    window.location.href = mailText;
+  const sendReport = async (): Promise<void> => {
+    setSuccess(null);
+    setError(null);
+    // SendReport
+    const response = await SendReport(message);
+
+    if ('status' in response && response.status) {
+      setMessage('');
+      setSuccess('Message was sent successfully.');
+    } else if ('errors' in response && response.errors.message) {
+      setError(response.errors.message[0]);
+    } else {
+      setError('Something was wrong.');
+    }
   };
-
-  const githubClicked = () => {
-    window.open('https://github.com/BeamMW/web-wallet/issues', '_blank');
-  };
-
-  const saveLogsclicked = () => {
-    const { version } = extensionizer.runtime.getManifest();
-    const zip = new JSZip();
-    const finalLogs = logs.common.concat(logs.errors).concat(logs.warns);
-
-    zip.file('logs.log', finalLogs.join('\n'));
-    zip.generateAsync({ type: 'blob' }).then((content) => {
-      saveAs(content, `beam-web-wallet-${version}-report.zip`);
-    });
-
-    setView(View.SETTINGS);
-  }; */
 
   return (
     <Window onPrevious={handlePrevious}>
@@ -90,9 +148,18 @@ const SettingsReport = () => {
         {' '}
         <Email href="mailto:support@imperiumprotocol.com">support@imperiumprotocol.com</Email>
       </SubTitle>
-      <WriteButtonWrapper>
-        <WriteButton />
-      </WriteButtonWrapper>
+      <WriteButton onClick={() => setShowForm(!showForm)} />
+      {showForm
+            && (
+            <WriteAreaWrap>
+              <TextareaWrap>
+                <Textarea value={message} onChange={(e) => setMessage(e.target.value)} />
+                {success && <SuccessMessage>{success}</SuccessMessage>}
+                {error && <ErrorMessage>{error}</ErrorMessage>}
+              </TextareaWrap>
+              <WriteSendButton onClick={sendReport} />
+            </WriteAreaWrap>
+            )}
     </Window>
   );
 };
@@ -100,6 +167,11 @@ const SettingsReport = () => {
 export default SettingsReport;
 
 /**
+ *
+ *         <TextareaWrap>
+ *           <Textarea />
+ *         </TextareaWrap>
+ * <WriteSendButton />
  * <ReportStyled>
  *         <p>To report a problem:</p>
  *         <p>1. Click “Save wallet logs” and choose</p>
