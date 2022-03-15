@@ -291,3 +291,8 @@ export interface ConnectRequest {
   apivermin: string;
   appname: string;
 }
+
+export enum WalletTab {
+  funds = 'funds',
+  transactions = 'transactions',
+}

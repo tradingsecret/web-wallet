@@ -26,6 +26,10 @@ const FormStyled = styled.form`
   transform: translateX(-50%);
 `;
 
+const InputWrapper = styled.div`
+  margin-bottom: 20px;
+`;
+
 const LoginActive: React.FC = () => {
   const [warningVisible, toggleWarning] = useState(false);
 
@@ -44,17 +48,19 @@ const LoginActive: React.FC = () => {
     <>
       <Splash size="small">
         <FormStyled autoComplete="off" noValidate onSubmit={handleSubmit}>
-          <Input
-            autoFocus
-            name="password"
-            type="password"
-            placeholder="Password"
-            margin="large"
-            disabled={pending}
-            valid={isNil(error)}
-            label={error}
-            ref={inputRef}
-          />
+          <InputWrapper>
+            <Input
+              autoFocus
+              name="password"
+              type="password"
+              placeholder="Password"
+              margin="large"
+              disabled={pending}
+              valid={isNil(error)}
+              label={error}
+              ref={inputRef}
+            />
+          </InputWrapper>
           <Button type="submit" disabled={pending} icon={WalletSmallIcon}>
             open your wallet
           </Button>

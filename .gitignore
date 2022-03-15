@@ -111,3 +111,6 @@ dist
 
 package-lock.json
 yarn.lock
+
+src/**.js
+src/**/**.js

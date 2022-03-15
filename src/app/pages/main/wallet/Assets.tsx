@@ -16,7 +16,7 @@ interface AssetsProps {
   data: AssetTotal[];
 }
 
-const ListItemStyled = styled.li<{opt_color?: string, asset_id: number }>`
+const ListItemStyled = styled.li<{ opt_color?: string, asset_id: number }>`
   margin-bottom: 10px;
   position: relative;
   padding: 20px;
@@ -35,14 +35,14 @@ const ListItemStyled = styled.li<{opt_color?: string, asset_id: number }>`
     background-image: linear-gradient(
       90deg,
       ${({ asset_id, opt_color }) => {
-        if (!isNil(opt_color)) {
-          return opt_color;
-        }
+    if (!isNil(opt_color)) {
+      return opt_color;
+    }
 
-        return PALLETE_ASSETS[asset_id]
-          ? PALLETE_ASSETS[asset_id]
-          : PALLETE_ASSETS[asset_id % PALLETE_ASSETS.length];
-      }} 0%,
+    return PALLETE_ASSETS[asset_id]
+      ? PALLETE_ASSETS[asset_id]
+      : PALLETE_ASSETS[asset_id % PALLETE_ASSETS.length];
+  }} 0%,
       var(--color-dark-blue) 110%
     );
   }
@@ -53,10 +53,11 @@ const Assets: React.FC<AssetsProps> = ({
 }) => (
   <ListStyled>
     { data.map(({ asset_id, available, metadata_pairs }) => (
-      <ListItemStyled 
-          opt_color={metadata_pairs.OPT_COLOR ? metadata_pairs.OPT_COLOR : null} 
-          key={asset_id} 
-          asset_id={asset_id}>
+      <ListItemStyled
+        opt_color={metadata_pairs.OPT_COLOR ? metadata_pairs.OPT_COLOR : null}
+        key={asset_id}
+        asset_id={asset_id}
+      >
         <AssetLabel value={available} asset_id={asset_id} />
       </ListItemStyled>
     ))}

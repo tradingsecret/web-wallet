@@ -36,6 +36,7 @@ const ContainerStyled = styled.div<WindowProps>`
   min-height: 600px;
   //padding: 0 30px 30px;
   text-align: center;
+  background-image:  ${({ primary }) => (primary ? 'url("/assets/wallet_bg.png")' : 'inherit')}
 
   /*
   &:before {
@@ -90,8 +91,8 @@ const FrameStyled = styled.div`
 const menuButtonStyle = css`
   position: fixed;
   z-index: 3;
-  top: 74px;
-  left: 24px;
+  top: 14px;
+  left: 0;
   margin: 0;
 `;
 
@@ -109,7 +110,7 @@ export const Window: React.FC<WindowProps> = ({
   const handleCancelClick = () => setVisible(false);
 
   return (
-    <ContainerStyled pallete={pallete}>
+    <ContainerStyled pallete={pallete} primary={primary}>
       { primary && (
         <Button
           variant="icon"
@@ -120,7 +121,7 @@ export const Window: React.FC<WindowProps> = ({
       )}
       {menuVisible && <Menu onCancel={handleCancelClick} />}
       {children}
-      <LogoBottom />
+      {!primary && <LogoBottom />}
     </ContainerStyled>
   );
 };

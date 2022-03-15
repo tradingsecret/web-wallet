@@ -7,7 +7,6 @@ import {
   Button, Window, Section, Menu,
 } from 'app/uikit';
 import { compact, isNil } from '@core/utils';
-import { gotoSend, gotoReceive } from '@app/model/view';
 import { getRateFx, GROTHS_IN_BEAM } from '@app/model/rates';
 
 import {
@@ -18,8 +17,13 @@ import {
 import { css } from '@linaria/core';
 import { $assets, $transactions } from '@app/model/wallet';
 
-import { Transaction } from '@app/core/types';
+import { Transaction, WalletTab } from '@app/core/types';
 import { Wrapper } from '@pages/main/styles';
+import { Header } from '@pages/main/wallet/controls/Header';
+import { Balance } from '@pages/main/wallet/controls/Balance';
+import { Buttons } from '@pages/main/wallet/controls/Buttons';
+import { Tabs } from '@pages/main/wallet/controls/Tabs';
+import { Funds } from '@pages/main/wallet/controls/Funds';
 import Assets from './Assets';
 import Transactions from './Transactions';
 
@@ -53,6 +57,10 @@ const TABLE_CONFIG = [
     title: 'Status',
   },
 ];
+
+const MainWrapper = styled.div`
+  padding: 0 30px;
+`;
 
 const ActionsStyled = styled.div`
   display: flex;
@@ -90,7 +98,9 @@ const Wallet = () => {
   }, []);
 
   const [active, setActive] = useState(null);
+  const [activeTab, setActiveTab] = useState(WalletTab.funds);
   const assets = useStore($assets);
+  const mainAsset = assets.find((asset) => asset.asset_id === 0);
   const transactions = useStore($transactions);
 
   const toggleActive = (asset_id: number) => {
@@ -102,26 +112,40 @@ const Wallet = () => {
   const sorted = filtered.sort(createdCompartor);
   const sliced = sorted.slice(0, TXS_MAX);
 
+  const selectedHandler = (tab: WalletTab) => {
+    setActiveTab(tab);
+  };
+
   return (
     <Window title="Wallet" primary>
-      <Wrapper>
-        <ActionsStyled>
-          <Button pallete="purple" icon={ArrowUpIcon} onClick={gotoSend}>
-            send
-          </Button>
-          <Button pallete="blue" icon={ArrowDownIcon} onClick={gotoReceive}>
-            receive
-          </Button>
-        </ActionsStyled>
-        <Section title="Assets">
-          <Assets data={assets} />
-        </Section>
-        <Section title="Transactions">
-          <Transactions data={sliced} />
-        </Section>
-      </Wrapper>
+      <Header />
+      <Balance mainAsset={mainAsset} />
+      <MainWrapper>
+        <Buttons />
+        <Tabs activeTab={activeTab} selected={selectedHandler} />
+      </MainWrapper>
+      {activeTab === WalletTab.funds && <Funds data={assets} /> }
     </Window>
   );
 };
 
 export default Wallet;
+
+/**
+ *
+ *         <!--
+ *         <ActionsStyled>
+ *           <Button pallete="purple" icon={ArrowUpIcon} onClick={gotoSend}>
+ *             send
+ *           </Button>
+ *           <Button pallete="blue" icon={ArrowDownIcon} onClick={gotoReceive}>
+ *             receive
+ *           </Button>
+ *         </ActionsStyled>
+ *         <Section title="Assets">
+ *           <Assets data={assets} />
+ *         </Section>
+ *         <Section title="Transactions">
+ *           <Transactions data={sliced} />
+ *         </Section>-->
+ */
