@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Beam Web Wallet (Masternet)",
-  "short_name": "Beam Web Wallet (Masternet)",
-  "description": "Beam Web Wallet (Masternet)",
+  "name": "Imperium Web Wallet (Testnet)",
+  "short_name": "Imperium Web Wallet (Testnet)",
+  "description": "Imperium Web Wallet (Testnet)",
   "version": "1.0.1",
   "browser_action": {
     "default_popup": "popup.html"

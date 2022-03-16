@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Beam Web Wallet%BEAM_NETWORK%",
-  "short_name": "Beam Web Wallet%BEAM_NETWORK%",
-  "description": "Beam Web Wallet%BEAM_NETWORK%",
+  "name": "Imperium Web Wallet (Testnet)",
+  "short_name": "Imperium Web Wallet (Testnet)",
+  "description": "Imperium Web Wallet (Testnet)",
   "version": "%BEAM_VERSION%",
   "cross_origin_embedder_policy": {
     "value": "require-corp"

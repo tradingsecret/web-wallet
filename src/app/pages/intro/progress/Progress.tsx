@@ -2,39 +2,23 @@ import React from 'react';
 import { useStore } from 'effector-react';
 import { styled } from '@linaria/react';
 
-import { Button, Splash, Footer } from 'app/uikit';
-import { setView, View } from '@app/model/view';
+import { Splash } from 'app/uikit';
 import WasmWallet from '@core/WasmWallet';
 
 import {
-  CancelIcon,
-} from '@app/icons';
-
-import ProgressBar from './ProgressBar';
-import {
-  $syncPercent, $syncProgress, $loading, setLoading,
+  $syncPercent, $syncProgress,
 } from './model';
 
 const ProgressWrapper = styled.div`
   position: absolute;
-  bottom: 150px;
+  bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
 `;
 
-const TitleStyled = styled.h2`
-  margin: 0;
-  font-size: 16px;
-`;
-
-const SubtitleStyled = styled.h3`
-  opacity: 0.5;
-  height: 17px;
-  margin: 10px 0;
-  color: white;
-  font-size: 14px;
-  font-weight: 400;
-  font-style: italic;
+const ProgressLine = styled.img`
+  width: 400px;
+  height: 160px;
 `;
 
 const wallet = WasmWallet.getInstance();
@@ -42,31 +26,15 @@ const wallet = WasmWallet.getInstance();
 const Progress = () => {
   const [total] = useStore($syncProgress);
   const syncPercent = useStore($syncPercent);
-  const loading = useStore($loading);
-
-  const handleCancelClick = () => {
-    wallet.stop();
-    setLoading(false);
-    setView(View.LOGIN);
-  };
-
-  const active = total > 0;
-  const progress = `Syncing with blockchain ${syncPercent}%`;
+  const syncPercentRounded = Math.ceil(syncPercent);
+  // eslint-disable-next-line no-nested-ternary,@typescript-eslint/no-shadow
+  const numberImage = syncPercentRounded < 10 ? `00${syncPercentRounded}` : syncPercentRounded < 100 ? `0${syncPercentRounded}` : syncPercentRounded;
 
   return (
     <Splash size="small">
       <ProgressWrapper>
-        <TitleStyled>Loading</TitleStyled>
-        <SubtitleStyled>{active && progress}</SubtitleStyled>
-        <ProgressBar active={active} percent={syncPercent} />
+        <ProgressLine src={`/assets/progress_bar_sequence/${numberImage}.png`} />
       </ProgressWrapper>
-      {/* <Footer>
-        { loading && (
-        <Button variant="ghost" icon={CancelIcon} onClick={handleCancelClick}>
-          cancel
-        </Button>
-        ) }
-      </Footer> */}
     </Splash>
   );
 };
