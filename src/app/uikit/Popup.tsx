@@ -19,12 +19,18 @@ const ContainerStyled = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 335px;
-  padding: 30px 20px;
+  width: 400px;
   border-radius: 10px;
-  background-color: var(--color-popup);
+  background: url("/assets/popups/popup.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   text-align: center;
   color: white;
+`;
+
+const ContainerStyledWrapper = styled.div`
+  padding: 60px;
 `;
 
 const TitleStyled = styled.h2`
@@ -35,11 +41,28 @@ const TitleStyled = styled.h2`
 
 const FooterStyled = styled.div`
   display: flex;
+  justify-content: center;
   margin: 0 -7px;
   margin-top: 20px;
 
   > button {
     margin: 0 7px !important;
+  }
+`;
+
+export const ConfirmButton = styled.button`
+  background-image: url('/assets/popups/ok_button_default.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  width: 162px;
+  height: 45px;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  
+  &:hover {
+    border: 0;
+    background-image: url('/assets/popups/ok_button_hover.png');
   }
 `;
 
@@ -61,12 +84,13 @@ const Popup: React.FC<PopupProps> = ({
 }) => (visible ? (
   <Backdrop onCancel={onCancel}>
     <ContainerStyled>
-      <TitleStyled>{title}</TitleStyled>
-      {children}
-      <FooterStyled>
-        {cancelButton}
-        {confirmButton}
-      </FooterStyled>
+      <ContainerStyledWrapper>
+        <TitleStyled>{title}</TitleStyled>
+        {children}
+        <FooterStyled>
+          {confirmButton}
+        </FooterStyled>
+      </ContainerStyledWrapper>
     </ContainerStyled>
   </Backdrop>
 ) : null);

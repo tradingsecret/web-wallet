@@ -5,6 +5,8 @@ import {
   Popup, Button, Input, Splash,
 } from '@uikit';
 
+import { ConfirmButton } from '@uikit/Popup';
+
 import { isNil } from '@app/core/utils';
 
 import {
@@ -80,12 +82,7 @@ const LoginActive: React.FC = () => {
         visible={warningVisible}
         title="Restore wallet or create a new one"
         confirmButton={(
-          <Button
-            icon={DoneIcon}
-            onClick={() => setLoginPhase(LoginPhase.RESTORE)}
-          >
-            I agree
-          </Button>
+          <ConfirmButton onClick={() => setLoginPhase(LoginPhase.RESTORE)} />
         )}
         onCancel={() => {
           toggleWarning(false);

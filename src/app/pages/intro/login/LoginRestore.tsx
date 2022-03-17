@@ -3,6 +3,7 @@ import { useStore } from 'effector-react';
 
 import { setView, View } from '@app/model/view';
 import { Popup, Splash, Button } from 'app/uikit';
+import { ConfirmButton } from '@uikit/Popup';
 
 import {
   DoneIcon,
@@ -89,12 +90,7 @@ const LoginRestore: React.FC = () => {
         visible={warningVisible}
         title="Restore wallet"
         confirmButton={(
-          <Button
-            icon={DoneIcon}
-            onClick={() => setView(View.RESTORE)}
-          >
-            I agree
-          </Button>
+          <ConfirmButton onClick={() => setView(View.RESTORE)} />
         )}
         onCancel={() => toggleWarning(false)}
       >

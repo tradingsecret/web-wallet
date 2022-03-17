@@ -5,6 +5,7 @@ import { styled } from '@linaria/react';
 import {
   Window, Popup, Button,
 } from '@uikit';
+import { ConfirmButton } from '@uikit/Popup';
 import { View, setView, gotoBack } from '@app/model/view';
 import { $seed } from '@app/model/base';
 
@@ -102,12 +103,7 @@ const SeedWrite: React.FC = () => {
         visible={warningVisible}
         title="Save seed phrase"
         confirmButton={(
-          <Button
-            icon={DoneIcon}
-            onClick={handleNextClick}
-          >
-            done
-          </Button>
+          <ConfirmButton onClick={handleNextClick} />
         )}
         onCancel={handleCancel}
       >

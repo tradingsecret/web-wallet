@@ -4,6 +4,7 @@ import { styled } from '@linaria/react';
 import {
   Window, Button, Input, Footer, Popup,
 } from 'app/uikit';
+import { ConfirmButton } from '@uikit/Popup';
 import {
   View, setView, gotoProgress, gotoBack,
 } from '@app/model/view';
@@ -157,12 +158,7 @@ const SetPassword = () => {
         visible={warningVisible}
         title="Return to seed phrase"
         confirmButton={(
-          <Button
-            icon={ArrowLeftIcon}
-            onClick={handleReturnClick}
-          >
-            return
-          </Button>
+          <ConfirmButton onClick={handleReturnClick} />
             )}
         onCancel={() => toggleWarning(false)}
       >
