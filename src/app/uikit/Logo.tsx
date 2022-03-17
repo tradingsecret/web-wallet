@@ -18,7 +18,7 @@ const SubLogoStyled = styled.div`
   position: absolute;
   height: 90px;
   width: 348px;
-  top: 260px;
+  top: 190px;
   left: 50%;
   transform: translateX(-50%);
   background-image: url('/assets/imperium_logo.png');
@@ -28,7 +28,6 @@ const SubLogoStyled = styled.div`
 
 const Logo: React.FC = () => (
   <>
-    <LogoStyled />
     <SubLogoStyled />
   </>
 );

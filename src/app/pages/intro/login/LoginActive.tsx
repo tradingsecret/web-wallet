@@ -21,15 +21,47 @@ import {
 
 const FormStyled = styled.form`
   text-align: left;
-  width: 250px;
   position: absolute;
-  top: 360px;
+  top: 320px;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const InputLabel = styled.div`
+  font-family: "agency",serif;
+  font-weight: normal;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: #5fe795;
+  text-transform: uppercase;
 `;
 
 const InputWrapper = styled.div`
-  margin-bottom: 20px;
+  width: 250px;
+  margin: 0 auto 20px;
+`;
+
+const ButtonLogin = styled.button`
+  margin-top: 10px;
+  background-image: url('/assets/login/login_default.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  width: 342px;
+  height: 45px;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  
+  &:hover {
+    border: 0;
+    background-image: url('/assets/login/login_hover.png');
+  }
+`;
+
+const ButtonLink = styled(Button)`
 `;
 
 const LoginActive: React.FC = () => {
@@ -51,11 +83,11 @@ const LoginActive: React.FC = () => {
       <Splash size="small">
         <FormStyled autoComplete="off" noValidate onSubmit={handleSubmit}>
           <InputWrapper>
+            <InputLabel>Password</InputLabel>
             <Input
               autoFocus
               name="password"
               type="password"
-              placeholder="Password"
               margin="large"
               disabled={pending}
               valid={isNil(error)}
@@ -63,10 +95,8 @@ const LoginActive: React.FC = () => {
               ref={inputRef}
             />
           </InputWrapper>
-          <Button type="submit" disabled={pending} icon={WalletSmallIcon}>
-            open your wallet
-          </Button>
-          <Button
+          <ButtonLogin type="submit" disabled={pending} />
+          <ButtonLink
             variant="link"
             disabled={pending}
             onClick={(event) => {
@@ -75,7 +105,7 @@ const LoginActive: React.FC = () => {
             }}
           >
             Restore wallet or create a new one
-          </Button>
+          </ButtonLink>
         </FormStyled>
       </Splash>
       <Popup
