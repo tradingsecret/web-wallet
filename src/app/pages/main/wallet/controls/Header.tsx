@@ -4,7 +4,7 @@ import { styled } from '@linaria/react';
 const HeaderWrapper = styled.div`
   display: flex;
   font-family: "agency",serif;
-  height: 70px;
+  height: 42px;
   width: 100%;
   background: url("/assets/wallet/header/main_btn_bg.png");
   background-size: contain;
@@ -60,7 +60,6 @@ export const Header = () => (
     <HeaderButtonMainWrapper>
       <HeaderButtonLeft>
         <HeaderButtonWrapper>
-          <HeaderButtonTitle>CURRENT WALLET</HeaderButtonTitle>
           <HeaderButtonContent>0x49fk...95jdfir</HeaderButtonContent>
         </HeaderButtonWrapper>
       </HeaderButtonLeft>
@@ -68,7 +67,6 @@ export const Header = () => (
     <HeaderButtonMainWrapper>
       <HeaderButtonRight>
         <HeaderButtonWrapper>
-          <HeaderButtonTitle>CURRENT NETWORK</HeaderButtonTitle>
           <HeaderButtonContent>TESTNET</HeaderButtonContent>
         </HeaderButtonWrapper>
       </HeaderButtonRight>

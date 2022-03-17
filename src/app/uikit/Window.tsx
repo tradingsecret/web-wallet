@@ -88,12 +88,18 @@ const FrameStyled = styled.div`
   transform: translateX(-50%);
 `;
 
-const menuButtonStyle = css`
-  position: fixed;
-  z-index: 3;
-  top: 14px;
-  left: 0;
-  margin: 0;
+const MenuButton = styled.div`
+  padding: 3px;
+  display: flex;
+  justify-content: center;
+  width: 400px;
+  height: 40px;
+  cursor: pointer;
+  background: url("/assets/wallet/header/settings_default.png");
+  
+  :hover {
+    background: url("/assets/wallet/header/settings_hover.png");
+  }
 `;
 
 export const Window: React.FC<WindowProps> = ({
@@ -106,18 +112,13 @@ export const Window: React.FC<WindowProps> = ({
   const [menuVisible, setVisible] = useState(false);
 
   const handleBackClick = isNil(onPrevious) ? gotoBack : onPrevious;
-  const handleMenuClick = () => setVisible(true);
+  const handleMenuClick = () => setVisible(!menuVisible);
   const handleCancelClick = () => setVisible(false);
 
   return (
     <ContainerStyled pallete={pallete} primary={primary}>
       { primary && (
-        <Button
-          variant="icon"
-          icon={MenuIcon}
-          className={menuButtonStyle}
-          onClick={handleMenuClick}
-        />
+      <MenuButton onClick={handleMenuClick} />
       )}
       {menuVisible && <Menu onCancel={handleCancelClick} />}
       {children}

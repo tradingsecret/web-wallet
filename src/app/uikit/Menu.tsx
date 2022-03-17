@@ -1,103 +1,83 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { $view, setView, View } from '@app/model/view';
+import { setView, View } from '@app/model/view';
 import { styled } from '@linaria/react';
-import { css } from '@linaria/core';
+import RemovePopup from '@pages/main/settings/RemovePopup';
 
-import { CancelIcon } from '@app/icons';
-
-import { useStore } from 'effector-react';
-import Button from './Button';
-import BackDrop from './Backdrop';
-
-const MENU_ITEMS = [
-  {
-    title: 'Wallet',
-    value: View.WALLET,
-  },
-  // {
-  //   title: 'UTXO',
-  //   value: View.UTXO,
-  // },
-  {
-    title: 'Settings',
-    value: View.SETTINGS,
-  },
-];
-
-const ContainerStyled = styled.nav`
-  position: fixed;
-  z-index: 4;
-  top: 50px;
-  left: 0;
-  width: 319px;
-  height: 550px;
-  background-image: linear-gradient(to bottom, #0a4c7e, #042548);
-`;
-
-const ListStyled = styled.ul`
-  padding-top: 80px;
-`;
-
-const ListItemStyled = styled.li<{ active: boolean }>`
-  height: 60px;
-  line-height: 60px;
-  padding-left: 70px;
-  background-image: ${
-  ({ active }) => (
-    !active ? 'none'
-      : 'linear-gradient(to right, rgba(5, 226, 194, 0.1), rgba(5, 226, 194, 0))'
-  )};
-  text-align: left;
-  font-size: 16px;
-  cursor: ${({ active }) => (active ? 'default' : 'pointer')};
-`;
-
-const buttonStyle = css`
+const ContainerStyled = styled.div`
+  z-index: 1;
   position: absolute;
-  top: 24px;
-  left: 24px;
-  margin: 0;
+  width: 400px;
+  height: 121px;
+  top: 41px;
+  background: url("/assets/wallet/menu/menu_bg.png");
+`;
+
+const ButtonDelete = styled.div`
+  height: 59px;
+  font-size: 20px;
+  color: #757575;
+  font-family: "agency",serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+
+  :hover {
+    color: #fff;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+const ButtonWriteUs = styled.div`
+  height: 59px;
+  background: url("/assets/wallet/menu/hover_button.png");
+  font-size: 20px;
+  color: #757575;
+  font-family: "agency",serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+  
+  :hover {
+    color: #fff;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 interface MenuProps {
   onCancel?: React.MouseEventHandler,
 }
 
-const Menu: React.FC<MenuProps> = ({ onCancel }) => {
-  const view = useStore($view);
-
-  const handleClick: React.MouseEventHandler<HTMLLIElement> = ({
-    currentTarget,
-  }) => {
-    const index = parseInt(currentTarget.dataset.index, 10);
-    setView(MENU_ITEMS[index].value);
+const Menu: React.FC<MenuProps> = () => {
+  const [warningVisible, toggleWarning] = useState(false);
+  const ReportClicked = () => {
+    setView(View.SETTINGS_REPORT);
   };
 
   return (
-    <BackDrop onCancel={onCancel}>
-      <ContainerStyled>
-        <Button
-          variant="icon"
-          icon={CancelIcon}
-          className={buttonStyle}
-          onClick={onCancel}
-        />
-        <ListStyled>
-          {MENU_ITEMS.map(({ title, value }, index) => (
-            <ListItemStyled
-              key={value}
-              active={value === view}
-              data-index={index}
-              onClick={handleClick}
-            >
-              {title}
-            </ListItemStyled>
-          ))}
-        </ListStyled>
-      </ContainerStyled>
-    </BackDrop>
+    <ContainerStyled>
+      <ButtonDelete onClick={() => toggleWarning(true)}><span>DELETE CURRENT WALLET</span></ButtonDelete>
+      <ButtonWriteUs onClick={ReportClicked}><span>WRITE US</span></ButtonWriteUs>
+      <RemovePopup
+        visible={warningVisible}
+        onCancel={() => toggleWarning(false)}
+      />
+    </ContainerStyled>
   );
 };
 
 export default Menu;
+
