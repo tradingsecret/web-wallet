@@ -17,12 +17,15 @@ const ContainerStyled = styled.div`
   position: relative;
   display: flex;
   margin-bottom: 20px;
+  width: 100%;
 `;
 
 const LabelStyled = styled.div`
   display: inline-block;
   vertical-align: bottom;
-  line-height: 26px;
+  line-height: 24px;
+  font-family: "tomorrow",serif;
+  font-size: 24px;
 `;
 
 const selectClassName = css`
@@ -31,7 +34,7 @@ const selectClassName = css`
 `;
 
 const containerStyle = css`
-  flex-grow: 1;
+  width: 50%;
 `;
 
 interface AmountInputProps {
@@ -40,6 +43,7 @@ interface AmountInputProps {
   error?: string;
   pallete?: 'purple' | 'blue';
   onChange?: (value: [string, number]) => void;
+  className?: any;
 }
 
 const REG_AMOUNT = /^(?!0\d)(\d+)(\.)?(\d+)?$/;
@@ -56,6 +60,7 @@ const AmountInput: React.FC<AmountInputProps> = ({
   error,
   pallete = 'purple',
   onChange,
+  className = undefined,
 }) => {
   const assets = useStore($assets);
 
@@ -76,7 +81,7 @@ const AmountInput: React.FC<AmountInputProps> = ({
   };
 
   return (
-    <ContainerStyled>
+    <ContainerStyled className={className}>
       <Input
         variant="amount"
         valid={isNil(error)}
@@ -84,11 +89,10 @@ const AmountInput: React.FC<AmountInputProps> = ({
         value={value}
         pallete={pallete}
         maxLength={16}
-        placeholder="0"
         className={containerStyle}
         onInput={handleInput}
       />
-      { asset_id === 0 && <Rate value={parseFloat(value)} className={rateStyle} /> }
+      {/* asset_id === 0 && <Rate value={parseFloat(value)} className={rateStyle} /> */}
       <Select
         value={asset_id}
         className={selectClassName}
@@ -97,7 +101,6 @@ const AmountInput: React.FC<AmountInputProps> = ({
         { assets
           .map(({ asset_id: id, metadata_pairs }) => (
             <Option key={id} value={id}>
-              <AssetIcon asset_id={id} />
               <LabelStyled>{ truncate(metadata_pairs.UN) }</LabelStyled>
             </Option>
           ))}

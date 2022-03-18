@@ -25,6 +25,10 @@ const WarningSyled = styled.p`
   font-style: italic;
 `;
 
+const FormStyled = styled.form`
+  padding: 20px;
+`;
+
 const getTxType = (type: AddressType, offline: boolean): string => {
   if (type === 'max_privacy') {
     return 'Max Privacy';
@@ -55,7 +59,7 @@ const Send = () => {
       title="Send"
       pallete="purple"
     >
-      <form onSubmit={onConfirmSubmit}>
+      <FormStyled onSubmit={onConfirmSubmit}>
         <Section subtitle="Send to">{ compact(address) }</Section>
         <Section subtitle="Transaction type">{ txType }</Section>
         <Section subtitle="Amount">
@@ -83,7 +87,7 @@ const Send = () => {
         <Button type="submit" pallete="purple" icon={ArrowRightIcon}>
           next
         </Button>
-      </form>
+      </FormStyled>
     </Window>
   );
 };

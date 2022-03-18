@@ -128,6 +128,12 @@ css`
     }
     @font-face {
       font-family: 'tomorrow';
+      src: url('/assets/fonts/Tomorrow/Tomorrow-SemiBoldItalic.ttf');
+      font-weight: normal;
+      font-style: italic;
+    }
+    @font-face {
+      font-family: 'tomorrow';
       src: url('/assets/fonts/Tomorrow/tomorrow-semibold.woff2') format('woff2'),
       url('/assets/fonts/Tomorrow/tomorrow-semibold.woff') format('woff');
       font-weight: 700;

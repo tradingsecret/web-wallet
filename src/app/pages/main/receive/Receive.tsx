@@ -48,6 +48,10 @@ const LabelStyled = styled.label`
   flex-grow: 1;
 `;
 
+const FormStyled = styled.form`
+  padding: 20px;
+`;
+
 const Receive = () => {
   const address = useStore($addressPreview);
   const maxAnonimity = useStore($maxAnonymity);
@@ -62,7 +66,7 @@ const Receive = () => {
       title="Receive"
       pallete="blue"
     >
-      <form onSubmit={copyAndClose}>
+      <FormStyled onSubmit={copyAndClose}>
         <Section title="Address" variant="gray">
           <AddresStyled>
             { address }
@@ -122,7 +126,7 @@ const Receive = () => {
         >
           copy and close
         </Button>
-      </form>
+      </FormStyled>
     </Window>
   );
 };

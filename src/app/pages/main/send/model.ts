@@ -57,6 +57,7 @@ const sendTransactionFx = createEffect(sendTransaction);
 
 /* Form */
 
+export const setHalfAmount = createEvent<React.MouseEvent>();
 export const setMaxAmount = createEvent<React.MouseEvent>();
 
 export const onFormSubmit = makePrevented(gotoConfirm);
@@ -185,6 +186,19 @@ sample({
     const total = asset_id === 0
       ? Math.max(available - fee, 0) : available;
     const amount = fromGroths(total).toString();
+    return [amount, asset_id] as Amount;
+  },
+  target: setAmount,
+});
+
+// set half amount
+sample({
+  source: combine($selected, $form),
+  clock: setHalfAmount,
+  fn: ([{ available }, { asset_id, fee }]) => {
+    const total = asset_id === 0
+      ? Math.max(available - fee, 0) : available;
+    const amount = fromGroths(total > 0 ? total / 2 : 0).toString();
     return [amount, asset_id] as Amount;
   },
   target: setAmount,

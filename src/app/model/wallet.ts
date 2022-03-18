@@ -51,7 +51,7 @@ const META_BEAM: Partial<Asset> = {
   metadata_pairs: {
     N: 'ARC',
     SN: 'ARC',
-    UN: 'ARC',
+    UN: 'ARCS',
   },
 };
 
