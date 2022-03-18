@@ -10,6 +10,7 @@ interface PopupProps {
   title?: string;
   cancelButton?: React.ReactElement;
   confirmButton?: React.ReactElement;
+  useCancelButton?: boolean;
   visible?: boolean;
   onCancel?: React.MouseEventHandler;
 }
@@ -69,6 +70,7 @@ export const ConfirmButton = styled.button`
 const Popup: React.FC<PopupProps> = ({
   title,
   visible,
+  useCancelButton = false,
   onCancel,
   cancelButton = (
     <Button
@@ -88,6 +90,7 @@ const Popup: React.FC<PopupProps> = ({
         <TitleStyled>{title}</TitleStyled>
         {children}
         <FooterStyled>
+          {useCancelButton && cancelButton}
           {confirmButton}
         </FooterStyled>
       </ContainerStyledWrapper>

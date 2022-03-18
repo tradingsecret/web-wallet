@@ -61,6 +61,23 @@ const ButtonLogin = styled.button`
   }
 `;
 
+const ButtonRestore = styled.button`
+  margin-top: 10px;
+  background-image: url('/assets/buttons/restore/default.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  width: 342px;
+  height: 45px;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  
+  &:hover {
+    border: 0;
+    background-image: url('/assets/buttons/restore/hover.png');
+  }
+`;
+
 const ButtonLink = styled(Button)`
 `;
 
@@ -96,16 +113,13 @@ const LoginActive: React.FC = () => {
             />
           </InputWrapper>
           <ButtonLogin type="submit" disabled={pending} />
-          <ButtonLink
-            variant="link"
+          <ButtonRestore
             disabled={pending}
             onClick={(event) => {
               event.preventDefault();
               toggleWarning(true);
             }}
-          >
-            Restore wallet or create a new one
-          </ButtonLink>
+          />
         </FormStyled>
       </Splash>
       <Popup

@@ -15,6 +15,7 @@ import {
 
 import { useStore } from 'effector-react';
 import { isNil } from '@app/core/utils';
+import { styled } from '@linaria/react';
 import {
   $error, deleteWalletFx, onInput, resetError,
 } from './model';
@@ -23,6 +24,38 @@ interface RemovePopupProps {
   visible?: boolean;
   onCancel?: React.MouseEventHandler;
 }
+
+const ButtonCancel = styled.button`
+  background-image: url('/assets/settings/delete/cancel_btn_default.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  width: 129px;
+  height: 36px;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  
+  &:hover {
+    border: 0;
+    background-image: url('/assets/settings/delete/cancel_btn_hover.png');
+  }
+`;
+
+const ButtonOk = styled.button`
+  background-image: url('/assets/settings/delete/ok_btn_default.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  width: 129px;
+  height: 36px;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  
+  &:hover {
+    border: 0;
+    background-image: url('/assets/settings/delete/ok_btn_hover.png');
+  }
+`;
 
 const RemovePopup: React.FC<RemovePopupProps> = ({
   visible,
@@ -41,18 +74,15 @@ const RemovePopup: React.FC<RemovePopupProps> = ({
     }
   };
 
-  const confirmButton = warned
-    ? <Button pallete="red" icon={RemoveIcon} onClick={handleConfirm}>remove</Button>
-    : <Button pallete="red" icon={ArrowRightIcon} onClick={handleConfirm}>proceed</Button>;
-
   return (
     <Popup
       visible={visible}
       title="Remove current wallet"
       cancelButton={
-        <Button variant="ghost" icon={CancelIcon} onClick={onCancel}>cancel</Button>
+        <ButtonCancel onClick={onCancel} />
       }
-      confirmButton={confirmButton}
+      useCancelButton
+      confirmButton={<ButtonOk onClick={handleConfirm} />}
       onCancel={onCancel}
     >
       { warned ? (
