@@ -42,7 +42,7 @@ export function compact(value: string): string {
   if (value.length <= 11) {
     return value;
   }
-  return `${value.substr(0, 5)}…${value.substr(-5, 5)}`;
+  return `${value.substr(0, 8)}…${value.substr(-8, 8)}`;
 }
 
 const LENGTH_MAX = 8;

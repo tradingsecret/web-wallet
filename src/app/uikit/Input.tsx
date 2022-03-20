@@ -70,6 +70,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     variant = 'regular',
     margin = 'none',
     pallete,
+    readOnly,
     className,
     ...rest
   }, ref) => {
@@ -81,7 +82,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <ContainerStyled className={className} margin={margin}>
-        <InputComponent ref={ref} valid={valid} pallete={pallete} {...rest} />
+        <InputComponent ref={ref} valid={valid} pallete={pallete} {...rest} readOnly={readOnly} />
         {!isNil(label) && <LabelStyled valid={valid}>{label}</LabelStyled>}
       </ContainerStyled>
     );

@@ -2,115 +2,37 @@
 import React, { useRef } from 'react';
 import { useStore } from 'effector-react';
 
-import {
-  Window, Section, Input, Button, Rate,
-} from 'app/uikit';
-
-import {
-  ArrowRightIcon,
-  ArrowUpIcon,
-} from '@app/icons';
+import { Input, Window } from 'app/uikit';
 
 import { AmountInput } from '@uikit';
 
 import { styled } from '@linaria/react';
-import LabeledToggle from '@app/uikit/LabeledToggle';
-import { css } from '@linaria/core';
-import { fromGroths, isNil, truncate } from '@app/core/utils';
-import { restore } from 'effector';
-import { Amount } from '@core/types';
+import { fromGroths, truncate } from '@app/core/utils';
+import {
+  InputAmountStyle,
+  InputLabel,
+  InputStyle,
+  InputWrapper,
+  WalletForm,
+  WalletTitle,
+  WrapperWallet,
+  ButtonsWrapper,
+} from '@pages/main/styles';
 import {
   $address,
-  $offline,
+  $addressData,
   $amount,
-  $comment,
-
+  $amountError,
+  $description,
+  $offline,
+  $selected,
+  $valid,
   onAddressChange,
-  onCommentChange,
-
-  setOffline,
+  onFormSubmit,
   setAmount,
   setHalfAmount,
   setMaxAmount,
-  onFormSubmit,
-
-  $valid,
-  $selected,
-  $addressData,
-  $description,
-  $amountError,
 } from './model';
-
-const WarningStyled = styled.div`
-  margin: 30px -20px;
-  font-family: 'SFProDisplay';
-  font-style: italic;
-  color: var(--color-gray);
-`;
-
-const maxButtonStyle = css`
-  position: absolute;
-  right: 20px;
-  top: 138px;
-`;
-
-export const Wrapper = styled.div`
-  position: relative;
-  padding: 50px;
-`;
-
-export const Title = styled.div`
-  font-family: "agency",serif;
-  font-weight: bold;
-  font-size: 30px;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-`;
-
-export const Form = styled.form`
-  padding-top: 50px;
-`;
-
-export const InputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  margin-top: 40px;
-  
-  :first-child {
-    margin-top: 0 !important;
-  }
-`;
-
-const InputStyle = css`
-  input {
-    border-bottom: 2px dashed white !important;
-    color: #15a901;
-    font-size: 20px;
-    text-transform: uppercase;
-    padding: 25px 10px 15px !important;
-  }
-`;
-
-const InputAmountStyle = css`
-  input {
-    border-bottom: 2px dashed white !important;
-    font-family: "tomorrow",serif;
-    color: #15a901 !important;
-    font-size: 20px !important;
-    font-weight: normal !important;
-    text-transform: uppercase !important;
-    padding: 25px 10px 15px !important;
-  }
-`;
-
-const InputLabel = styled.label`
-  font-family: "tomorrow",serif;
-  font-weight: bold;
-  text-align: left;
-  font-size: 14px;
-`;
 
 const ErrorMessage = styled.div`
   margin-top: 15px;
@@ -149,16 +71,6 @@ const ButtonSend = styled(AmountOptionButton)`
   :hover {
     background: url("/assets/send/max_btn_hover.png");
   }
-`;
-
-export const ButtonsWrapper = styled.div`
-  position: absolute;
-  bottom: 80px;
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  left: 50%;
-  transform: translateX(-50%);
 `;
 
 const ButtonConfirm = styled.button`
@@ -200,13 +112,13 @@ const SendForm = () => {
       title="Send"
       pallete="purple"
     >
-      <Wrapper>
-        <Title>
+      <WrapperWallet>
+        <WalletTitle>
           Balance:
           {' '}
           {`${groths} ${truncate(selected.metadata_pairs.N)}`}
-        </Title>
-        <Form onSubmit={onFormSubmit}>
+        </WalletTitle>
+        <WalletForm onSubmit={onFormSubmit}>
           <InputWrapper>
             <InputLabel htmlFor="send_recipient">RECIPIENT ADDRESS</InputLabel>
             <Input
@@ -233,10 +145,10 @@ const SendForm = () => {
             <ButtonSend type="button" onClick={setMaxAmount} />
           </ButtonsAmountWrapper>
           {amountError && <ErrorMessage>INSUFFICIENT FUNDS</ErrorMessage>}
-        </Form>
-      </Wrapper>
-      <ButtonsWrapper onClick={onFormSubmit}>
-        <ButtonConfirm />
+        </WalletForm>
+      </WrapperWallet>
+      <ButtonsWrapper>
+        <ButtonConfirm onClick={onFormSubmit} />
       </ButtonsWrapper>
     </Window>
   );

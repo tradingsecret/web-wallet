@@ -9,7 +9,7 @@ import {
 
 import { createAddress } from '@app/core/api';
 import {
-  compact, fromCheckbox, preventEvent,
+  compact, preventEvent,
 } from '@app/core/utils';
 import { gotoReceive, gotoWallet } from '@app/model/view';
 
@@ -19,17 +19,12 @@ const copyToClipboard = (value: string) => navigator.clipboard.writeText(value);
 
 export const setAmount = createEvent<Amount>();
 
-export const onToggleChange = createEvent<React.ChangeEvent>();
-
-const setMaxAnonymity = onToggleChange.map(fromCheckbox);
-
 export const createAddressFx = createEffect(createAddress);
 
 export const $address = restore(createAddressFx.doneData, '');
 export const $addressPreview = $address.map(compact);
 
 export const $amount = restore<Amount>(setAmount, ['', 0]);
-export const $maxAnonymity = restore(setMaxAnonymity, false);
 
 export const copyToClipboardFx = createEffect(copyToClipboard);
 
@@ -52,7 +47,6 @@ sample({
 const STORES = [
   $address,
   $amount,
-  $maxAnonymity,
 ];
 
 STORES.forEach((store) => store.reset(gotoReceive));
