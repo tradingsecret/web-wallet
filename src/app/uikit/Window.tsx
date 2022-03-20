@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import { styled } from '@linaria/react';
-import { css } from '@linaria/core';
 
 import { gotoBack } from '@app/model/view';
 import { isNil } from '@app/core/utils';
-import { MenuIcon } from '@app/icons';
 
 import LogoBottom from '@uikit/LogoBottom';
-import Logo from './Logo';
-import BackButton from './BackButton';
-import Title from './Title';
-import Button from './Button';
+import BackButton from '@uikit/BackButton';
 import Menu from './Menu';
 
 interface WindowProps {
   title?: string;
   primary?: boolean;
+  withBack?: boolean;
   pallete?: 'default' | 'blue' | 'purple';
   onPrevious?: React.MouseEventHandler;
 }
@@ -105,6 +101,7 @@ const MenuButton = styled.div`
 export const Window: React.FC<WindowProps> = ({
   title,
   primary = false,
+  withBack = false,
   pallete = 'default',
   children,
   onPrevious,
@@ -117,6 +114,7 @@ export const Window: React.FC<WindowProps> = ({
 
   return (
     <ContainerStyled pallete={pallete} primary={primary}>
+      {withBack && <BackButton onClick={handleBackClick} />}
       { primary && (
       <MenuButton onClick={handleMenuClick} />
       )}

@@ -157,12 +157,13 @@ const Receive = () => {
     <Window
       title="Receive"
       pallete="blue"
+      withBack
     >
       <WrapperWallet>
         <WalletTitle>
           Balance:
           {' '}
-          {`${groths} ${truncate(selected.metadata_pairs.N)}`}
+          {`${truncate(String(groths))} ${truncate(selected.metadata_pairs.N)}`}
         </WalletTitle>
         <WalletForm onSubmit={copyAndClose}>
           <InputWrapper>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { Window } from 'app/uikit';
-import { View, setView } from '@app/model/view';
 import { styled } from '@linaria/react';
 import { SendReport } from '@model/report';
 
@@ -9,7 +8,7 @@ const Title = styled.div`
   font-family: "agency",serif;
   font-weight: bold;
   font-size: 32px;
-  padding-top: 40px;
+  padding-top: 20px;
   color: #fff;
   letter-spacing: 1px;
 `;
@@ -118,10 +117,6 @@ const SettingsReport = () => {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
 
-  const handlePrevious: React.MouseEventHandler = () => {
-    setView(View.SETTINGS);
-  };
-
   const sendReport = async (): Promise<void> => {
     setSuccess(null);
     setError(null);
@@ -139,7 +134,7 @@ const SettingsReport = () => {
   };
 
   return (
-    <Window onPrevious={handlePrevious}>
+    <Window withBack>
       <Title>FOUND A BUG?</Title>
       <SubTitle>
         If you found bugs or faced any other problems

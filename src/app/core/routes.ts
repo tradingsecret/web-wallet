@@ -14,7 +14,6 @@ import {
   SendConfirm,
   SendForm,
   Utxo,
-  Settings,
   SettingsReport,
 } from '@pages/main';
 
@@ -38,7 +37,6 @@ const ROUTES = {
   [View.SEND_CONFIRM]: SendConfirm,
   [View.RECEIVE]: Receive,
   [View.UTXO]: Utxo,
-  [View.SETTINGS]: Settings,
   [View.SETTINGS_REPORT]: SettingsReport,
   [View.CONNECT]: Connect,
   [View.APPROVEINVOKE]: ApproveInvoke,

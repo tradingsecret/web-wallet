@@ -111,6 +111,7 @@ const SendForm = () => {
     <Window
       title="Send"
       pallete="purple"
+      withBack
     >
       <WrapperWallet>
         <WalletTitle>
