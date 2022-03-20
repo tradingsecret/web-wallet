@@ -117,7 +117,7 @@ const SendForm = () => {
         <WalletTitle>
           Balance:
           {' '}
-          {`${groths} ${truncate(selected.metadata_pairs.N)}`}
+          {`${truncate(String(groths))} ${truncate(selected.metadata_pairs.N)}`}
         </WalletTitle>
         <WalletForm onSubmit={onFormSubmit}>
           <InputWrapper>
@@ -156,59 +156,3 @@ const SendForm = () => {
 };
 
 export default SendForm;
-
-/**
- * <form onSubmit={onFormSubmit}>
- *         <Section title="Send to" variant="gray">
- *           <Input
- *             variant="gray"
- *             label={label}
- *             valid={address === '' || label === null || addressValid}
- *             placeholder="Paste recipient address here"
- *             value={address}
- *             onInput={onAddressChange}
- *           />
- *         </Section>
- *         { addressType === 'offline' && (
- *         <Section title="Transaction Type" variant="gray">
- *           <LabeledToggle
- *             left="Online"
- *             right="Offline"
- *             value={offline}
- *             onChange={setOffline}
- *           />
- *         </Section>
- *         ) }
- *         <Section title="Amount" variant="gray">
- *           <AmountInput
- *             value={amount}
- *             asset_id={asset_id}
- *             error={amountError}
- *             onChange={setAmount}
- *           />
- *           <Title variant="subtitle">Available</Title>
- *           {`${groths} ${truncate(selected.metadata_pairs.N)}`}
- *           { selected.asset_id === 0 && isNil(amountError) && <Rate value={groths} /> }
- *           { groths > 0 && (
- *             <Button
- *               icon={ArrowUpIcon}
- *               variant="link"
- *               pallete="purple"
- *               className={maxButtonStyle}
- *               onClick={setMaxAmount}
- *             >
- *               max
- *             </Button>
- *           )}
- *         </Section>
- *         <WarningStyled>{ warning }</WarningStyled>
- *         <Button
- *           pallete="purple"
- *           icon={ArrowRightIcon}
- *           type="submit"
- *           disabled={!valid}
- *         >
- *           next
- *         </Button>
- *       </form>
- */

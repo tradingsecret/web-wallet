@@ -119,8 +119,8 @@ const Wallet = () => {
   return (
     <Window title="Wallet" primary>
       <Header />
-      <Balance mainAsset={mainAsset} />
       <MainWrapper>
+        <Balance mainAsset={mainAsset} />
         <Buttons />
         <Tabs activeTab={activeTab} selected={selectedHandler} />
       </MainWrapper>
@@ -131,22 +131,3 @@ const Wallet = () => {
 };
 
 export default Wallet;
-
-/**
- *
- *         <!--
- *         <ActionsStyled>
- *           <Button pallete="purple" icon={ArrowUpIcon} onClick={gotoSend}>
- *             send
- *           </Button>
- *           <Button pallete="blue" icon={ArrowDownIcon} onClick={gotoReceive}>
- *             receive
- *           </Button>
- *         </ActionsStyled>
- *         <Section title="Assets">
- *           <Assets data={assets} />
- *         </Section>
- *         <Section title="Transactions">
- *           <Transactions data={sliced} />
- *         </Section>-->
- */

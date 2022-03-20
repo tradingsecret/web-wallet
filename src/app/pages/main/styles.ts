@@ -13,10 +13,10 @@ export const WrapperWallet = styled.div`
 export const WalletTitle = styled.div`
   font-family: "agency",serif;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 20px;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: 4px;
+  letter-spacing: 1px;
 `;
 
 export const WalletForm = styled.form`

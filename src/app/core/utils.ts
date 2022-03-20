@@ -45,7 +45,7 @@ export function compact(value: string): string {
   return `${value.substr(0, 8)}…${value.substr(-8, 8)}`;
 }
 
-const LENGTH_MAX = 8;
+const LENGTH_MAX = 10;
 
 export function truncate(value: string): string {
   if (value === '' || isNil(value)) {

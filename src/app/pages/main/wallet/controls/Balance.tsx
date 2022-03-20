@@ -30,6 +30,7 @@ const BalanceElement = styled.div`
   flex-direction: row;
   justify-content: center;
   gap: 15px;
+  overflow: hidden;
 `;
 
 // eslint-disable-next-line import/prefer-default-export
