@@ -94,3 +94,35 @@ export const InputAmountStylePurple = css`
     padding: 25px 10px 15px !important;
   }
 `;
+
+export const ButtonCancel = styled.button`
+  background-image: url('/assets/settings/delete/cancel_btn_default.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  width: 129px;
+  height: 36px;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  
+  &:hover {
+    border: 0;
+    background-image: url('/assets/settings/delete/cancel_btn_hover.png');
+  }
+`;
+
+export const ButtonOk = styled.button`
+  background-image: url('/assets/settings/delete/ok_btn_default.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  width: 129px;
+  height: 36px;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  
+  &:hover {
+    border: 0;
+    background-image: url('/assets/settings/delete/ok_btn_hover.png');
+  }
+`;

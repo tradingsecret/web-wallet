@@ -1,61 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
-import {
-  Button,
-  Input,
-  Popup,
-} from '@app/uikit';
-
-import {
-  CancelIcon,
-  ArrowRightIcon,
-  RemoveIcon,
-} from '@app/icons';
+import { Input, Popup } from '@app/uikit';
 
 import { useStore } from 'effector-react';
 import { isNil } from '@app/core/utils';
-import { styled } from '@linaria/react';
-import {
-  $error, deleteWalletFx, onInput, resetError,
-} from './model';
+import { ButtonCancel, ButtonOk } from '@pages/main/styles';
+import { $error, deleteWalletFx, onInput } from './model';
 
 interface RemovePopupProps {
   visible?: boolean;
   onCancel?: React.MouseEventHandler;
 }
-
-const ButtonCancel = styled.button`
-  background-image: url('/assets/settings/delete/cancel_btn_default.png');
-  background-repeat: no-repeat;
-  background-position-x: center;
-  width: 129px;
-  height: 36px;
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  
-  &:hover {
-    border: 0;
-    background-image: url('/assets/settings/delete/cancel_btn_hover.png');
-  }
-`;
-
-const ButtonOk = styled.button`
-  background-image: url('/assets/settings/delete/ok_btn_default.png');
-  background-repeat: no-repeat;
-  background-position-x: center;
-  width: 129px;
-  height: 36px;
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-  
-  &:hover {
-    border: 0;
-    background-image: url('/assets/settings/delete/ok_btn_hover.png');
-  }
-`;
 
 const RemovePopup: React.FC<RemovePopupProps> = ({
   visible,

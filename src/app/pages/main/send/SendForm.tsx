@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useStore } from 'effector-react';
 
-import { Input, Window } from 'app/uikit';
+import { Input, Popup, Window } from 'app/uikit';
 
 import { AmountInput } from '@uikit';
 
 import { styled } from '@linaria/react';
-import { fromGroths, truncate } from '@app/core/utils';
+import { fromGroths, isNil, truncate } from '@app/core/utils';
 import {
   InputAmountStyle,
   InputLabel,
@@ -16,8 +16,9 @@ import {
   WalletForm,
   WalletTitle,
   WrapperWallet,
-  ButtonsWrapper,
+  ButtonsWrapper, ButtonCancel, ButtonOk,
 } from '@pages/main/styles';
+import { onInput } from '@pages/main/settings/model';
 import {
   $address,
   $addressData,
@@ -27,7 +28,7 @@ import {
   $offline,
   $selected,
   $valid,
-  onAddressChange,
+  onAddressChange, onConfirmSubmit,
   onFormSubmit,
   setAmount,
   setHalfAmount,
@@ -87,6 +88,7 @@ const ButtonConfirm = styled.button`
 `;
 
 const SendForm = () => {
+  const [visibleConfirmation, setVisibleConfirmation] = useState(false);
   const amountInputRef = useRef(null);
   const address = useStore($address);
   const offline = useStore($offline);
@@ -119,7 +121,7 @@ const SendForm = () => {
           {' '}
           {`${truncate(String(groths))} ${truncate(selected.metadata_pairs.N)}`}
         </WalletTitle>
-        <WalletForm onSubmit={onFormSubmit}>
+        <WalletForm onSubmit={() => setVisibleConfirmation(true)}>
           <InputWrapper>
             <InputLabel htmlFor="send_recipient">RECIPIENT ADDRESS</InputLabel>
             <Input
@@ -149,8 +151,21 @@ const SendForm = () => {
         </WalletForm>
       </WrapperWallet>
       <ButtonsWrapper>
-        <ButtonConfirm onClick={onFormSubmit} />
+        <ButtonConfirm onClick={() => setVisibleConfirmation(true)} />
       </ButtonsWrapper>
+      <Popup
+        visible={visibleConfirmation}
+        title="Transaction confirmation"
+        cancelButton={
+          <ButtonCancel onClick={() => setVisibleConfirmation(false)} />
+          }
+        useCancelButton
+        confirmButton={<ButtonOk onClick={onConfirmSubmit} />}
+      >
+        <>
+          Do you confirm the transaction?
+        </>
+      </Popup>
     </Window>
   );
 };
