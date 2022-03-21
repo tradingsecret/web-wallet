@@ -75,11 +75,11 @@ const USDAmount = styled.div`
 `;
 
 const rateUp = css`
-  color: green;
+  color: #63a80a;
 `;
 
 const rateDown = css`
-  color: red;
+  color: #f60707;
 `;
 
 export const Funds: React.FC<AssetsProps> = ({ data }) => {

@@ -3,29 +3,20 @@ import React, { useEffect, useState } from 'react';
 import { useStore } from 'effector-react';
 import { styled } from '@linaria/react';
 
-import {
-  Button, Window, Section, Menu,
-} from 'app/uikit';
+import { Window } from 'app/uikit';
 import { compact, isNil } from '@core/utils';
 import { getRateFx, GROTHS_IN_BEAM } from '@app/model/rates';
-
-import {
-  ArrowUpIcon,
-  ArrowDownIcon,
-} from '@app/icons';
 
 import { css } from '@linaria/core';
 import { $assets, $transactions } from '@app/model/wallet';
 
 import { Transaction, WalletTab } from '@app/core/types';
-import { Wrapper } from '@pages/main/styles';
 import { Header } from '@pages/main/wallet/controls/Header';
 import { Balance } from '@pages/main/wallet/controls/Balance';
 import { Buttons } from '@pages/main/wallet/controls/Buttons';
 import { Tabs } from '@pages/main/wallet/controls/Tabs';
 import { Funds } from '@pages/main/wallet/controls/Funds';
-import Assets from './Assets';
-import Transactions from './Transactions';
+import Transactions from './controls/Transactions';
 
 const TXS_MAX = 4;
 
