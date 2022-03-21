@@ -7,10 +7,12 @@ const HeaderWrapper = styled.div`
   height: 42px;
   width: 100%;
   background: url("/assets/wallet/header/main_btn_bg.png");
-  background-size: contain;
+  background-repeat: repeat-y;
+  background-size: 200% 100%;
 `;
+
 const HeaderButtonMainWrapper = styled.div`
-  width: 50%;
+  width: 100%;
   height: 100%;
 `;
 
@@ -57,13 +59,6 @@ const HeaderButtonContent = styled.div`
 // eslint-disable-next-line import/prefer-default-export
 export const Header = () => (
   <HeaderWrapper>
-    <HeaderButtonMainWrapper>
-      <HeaderButtonLeft>
-        <HeaderButtonWrapper>
-          <HeaderButtonContent>0x49fk...95jdfir</HeaderButtonContent>
-        </HeaderButtonWrapper>
-      </HeaderButtonLeft>
-    </HeaderButtonMainWrapper>
     <HeaderButtonMainWrapper>
       <HeaderButtonRight>
         <HeaderButtonWrapper>
