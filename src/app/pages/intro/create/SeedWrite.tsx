@@ -23,7 +23,7 @@ const SeedListStyled = styled.ol`
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 0 10px;
-  font-family: "agency",serif;
+  font-family: "agency", serif;
   font-weight: normal;
   text-transform: uppercase;
   color: #5fe795;
@@ -44,7 +44,7 @@ const SeedListStyled = styled.ol`
       height: 20px;
       margin: 5px 10px 5px 9px;
       text-align: center;
-  }
+    }
 `;
 
 const SeedWrite: React.FC = () => {
@@ -83,8 +83,8 @@ const SeedWrite: React.FC = () => {
           </NotificationWrapper>
           <SeedListStyled>
             {seed.split(' ').map((value, index) => (
-            // eslint-disable-next-line
-            <li key={index}>{value}</li>
+                            // eslint-disable-next-line
+                            <li key={index}>{value}</li>
             ))}
           </SeedListStyled>
         </Wrapper>
@@ -101,14 +101,14 @@ const SeedWrite: React.FC = () => {
       </Window>
       <Popup
         visible={warningVisible}
-        title="Save seed phrase"
+        title="Save your seed phrase"
         confirmButton={(
           <ConfirmButton onClick={handleNextClick} />
-        )}
+                )}
         onCancel={handleCancel}
       >
-        Please write the seed phrase down. Storing it in a file makes it
-        prone to cyber attacks and, therefore, less secure.
+        Please save this seed phrase for further wallet restoration in case of lose access to this device. Don’t
+        store the seed phrase on your computer to avoid possible cyber-attacks and wallet hijack.
       </Popup>
     </>
   );

@@ -91,6 +91,7 @@ const MenuButton = styled.div`
   width: 400px;
   height: 40px;
   cursor: pointer;
+  background-size: contain !important;
   background: url("/assets/wallet/header/settings_default.png");
   
   :hover {

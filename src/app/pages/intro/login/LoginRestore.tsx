@@ -90,11 +90,10 @@ const LoginRestore: React.FC = () => {
         )}
         onCancel={() => toggleWarning(false)}
       >
-        You are trying to restore an existing Beam Wallet.
+        You are going to restore an existing Imperium Protocol Wallet.
         <br />
-        Please notice that if you use your wallet on another device,
-        your balance will be up to date, but transaction history
-        and addresses will be kept separately on each device.
+        <br />
+        IMPORTANT: If you are restoring your wallet on another device then your transaction history and saved addresses won't be restored.
       </Popup>
     </>
   );
