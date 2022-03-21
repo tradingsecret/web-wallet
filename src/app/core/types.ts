@@ -162,7 +162,7 @@ export interface WalletStatus extends SyncHash {
 // events
 
 export enum TxStatusString {
-  IN_PROGRESS = 'in progress',
+  IN_PROGRESS = 'Pending Transaction',
   RECEIVING = 'receiving',
   SENDING = 'sending',
   PENDING = 'pending',

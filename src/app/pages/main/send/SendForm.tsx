@@ -151,7 +151,7 @@ const SendForm = () => {
         </WalletForm>
       </WrapperWallet>
       <ButtonsWrapper>
-        <ButtonConfirm onClick={() => setVisibleConfirmation(true)} />
+        <ButtonConfirm disabled={!valid} onClick={() => setVisibleConfirmation(true)} />
       </ButtonsWrapper>
       <Popup
         visible={visibleConfirmation}

@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 import { styled } from '@linaria/react';
 
-import {
-  Window, Button, Input, Footer, Popup,
-} from 'app/uikit';
+import { Input, Popup, Window } from 'app/uikit';
 import { ConfirmButton } from '@uikit/Popup';
-import {
-  View, setView, gotoProgress, gotoBack,
-} from '@app/model/view';
+import { gotoProgress, setView, View } from '@app/model/view';
 import { makeOnChange } from '@core/utils';
-
-import { ArrowLeftIcon, ArrowRightIcon } from '@app/icons';
 
 import { createWallet } from '@app/core/api';
 import { useStore } from 'effector-react';
 import { $seed } from '@app/model/base';
 import {
-  ButtonsWrapper, Back, Next, Title, Wrapper, NotificationWrapper,
+  Back, ButtonsWrapper, Next, Title, Wrapper,
 } from '@pages/intro/styles';
 import PasswordStrength from './PasswordStrength';
 
@@ -149,7 +143,7 @@ const SetPassword = () => {
         <ButtonsWrapper>
           <Back
             type="button"
-            onClick={gotoBack}
+            onClick={() => toggleWarning(true)}
           />
           <Next type="submit" disabled={!ready} onClick={handleSubmit} />
         </ButtonsWrapper>
