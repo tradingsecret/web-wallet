@@ -15,7 +15,7 @@ const BalanceWrapper = styled.div`
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 `;
 
 const BalanceTitle = styled.div`

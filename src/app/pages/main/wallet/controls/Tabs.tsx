@@ -10,7 +10,7 @@ interface TabsParams {
 const TabsWrapper = styled.div`
     display: flex;
     justify-content: space-between;
-    margin-top: 40px;
+    margin-top: 30px;
 `;
 
 const Tab = styled.div`
