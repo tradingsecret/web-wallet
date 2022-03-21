@@ -21,9 +21,10 @@ const FundsStyled = styled.div`
   padding: 14px 90px 8px 30px;
   display: flex;
   justify-content: space-between;
-  font-family: "agency",serif;
+  font-family: "tomorrow",serif !important;
   font-size: 16px;
   position: relative;
+  letter-spacing: 1px !important;
   
   .arrow {
     position: absolute;

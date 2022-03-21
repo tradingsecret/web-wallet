@@ -22,12 +22,13 @@ const TransactionStyled = styled.div`
   width: 100%;
   padding: 14px 30px 8px 30px;
   justify-content: space-between;
-  font-family: "tomorrow",serif;
+  font-family: "tomorrow",serif !important;
   font-size: 16px;
   position: relative;
   color: #fff;
   display: flex;
   flex-direction: column;
+  letter-spacing: 1px !important;
   
   .arrow {
     position: absolute;
