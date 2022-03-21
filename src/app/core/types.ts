@@ -162,7 +162,7 @@ export interface WalletStatus extends SyncHash {
 // events
 
 export enum TxStatusString {
-  IN_PROGRESS = 'Pending Transaction',
+  IN_PROGRESS = 'pending',
   RECEIVING = 'receiving',
   SENDING = 'sending',
   PENDING = 'pending',
@@ -195,6 +195,41 @@ export enum TxStatusString {
   CANCELED_PUBLIC_OFFLINE = 'canceled public offline',
   RECEIVED_PUBLIC_OFFLINE = 'received public offline',
 }
+
+export const TxStatusToString = {
+  [TxStatusString.IN_PROGRESS]: 'Pending transaction',
+  [TxStatusString.RECEIVING]: 'Processing...',
+  [TxStatusString.SENDING]: 'Processing...',
+  [TxStatusString.PENDING]: 'Pending',
+  [TxStatusString.WAITING_FOR_RECEIVER]: 'Waiting for receiver',
+  [TxStatusString.WAITING_FOR_SENDER]: 'Waiting for sender',
+  [TxStatusString.SENT]: 'Outgoing Transaction',
+  [TxStatusString.RECEIVED]: 'Incoming Transaction (Regular)',
+  [TxStatusString.CANCELED]: 'Cancelled',
+  [TxStatusString.EXPIRED]: 'Expired',
+  [TxStatusString.FAILED]: 'Failed to Send (Regular)',
+  [TxStatusString.COMPLETED]: 'Completed',
+  [TxStatusString.SELF_SENDING]: 'Processing...',
+  [TxStatusString.SENT_TO_OWN_ADDRESS]: 'Outgoing Transaction to own address (Regular)',
+
+  [TxStatusString.SENT_OFFLINE]: 'Sent (offline)',
+  [TxStatusString.RECEIVED_OFFLINE]: 'Received (offline)',
+  [TxStatusString.CANCELED_OFFLINE]: 'Canceled (offline)',
+  [TxStatusString.IN_PROGRESS_OFFLINE]: 'In progress (offline)',
+  [TxStatusString.FAILED_OFFLINE]: 'Failed (offline)',
+
+  [TxStatusString.SENT_MAX_PRIVACY]: 'Outgoing Transaction (Anonymous)',
+  [TxStatusString.RECEIVED_MAX_PRIVACY]: 'Received (offline)',
+  [TxStatusString.CANCELED_MAX_PRIVACY]: 'Canceled (maximum anonymity)',
+  [TxStatusString.IN_PROGRESS_MAX_PRIVACY]: 'Processing Outgoing Transaction to own address (Anonymous)',
+  [TxStatusString.FAILED_MAX_PRIVACY]: 'Failed to Send (Anonymous)',
+
+  [TxStatusString.IN_PROGRESS_PUBLIC_OFFLINE]: 'In progress (public offline)',
+  [TxStatusString.FAILED_PUBLIC_OFFLINE]: 'Failed (public offline)',
+  [TxStatusString.SENT_PUBLIC_OFFLINE]: 'Sent (public offline)',
+  [TxStatusString.CANCELED_PUBLIC_OFFLINE]: 'Canceled (public offline)',
+  [TxStatusString.RECEIVED_PUBLIC_OFFLINE]: 'Received (public offline)',
+};
 
 export enum TxStatus {
   PENDING,

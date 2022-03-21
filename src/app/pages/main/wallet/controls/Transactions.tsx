@@ -1,7 +1,9 @@
 import React from 'react';
 import { styled } from '@linaria/react';
 
-import { Contract, Transaction } from '@app/core/types';
+import {
+  Contract, Transaction, TxStatusString, TxStatusToString,
+} from '@app/core/types';
 
 import { fromGroths, isNil, toUSD } from '@app/core/utils';
 import { css } from '@linaria/core';
@@ -66,6 +68,7 @@ const Amount = styled.div`
 const Status = styled.div`
   text-align: left;
   color: #6e6e6e;
+  font-size: 11px;
 `;
 
 const Rate = styled.div`
@@ -100,16 +103,23 @@ const fromInvokeData = (data: Contract, fee: number): Partial<Transaction> => {
   return null;
 };
 
+function swapKeysAndValues(obj) {
+  const swapped = Object.entries(obj).map(
+    ([key, value]) => [value, key],
+  );
+
+  return Object.fromEntries(swapped);
+}
+
 const Transactions: React.FC<TransactionsProps> = ({
   data: transactions,
 }) => {
   const rates = useStore($rate);
+  const statusesText = swapKeysAndValues(swapKeysAndValues(TxStatusToString));
 
   return (
     <TransactionsWrap>
       { transactions.map((tx, index) => {
-        console.log('tx', tx);
-
         const { invoke_data: contracts } = tx;
         const payload = isNil(contracts) ? null : fromInvokeData(contracts[0], tx.fee);
 
@@ -140,7 +150,7 @@ const Transactions: React.FC<TransactionsProps> = ({
               )}
             </TransactionRow>
             <TransactionRow>
-              <Status>{data.status_string}</Status>
+              <Status>{statusesText[data.status_string]}</Status>
               {rates && rates.rate && (
               <USDAmount className={`${data.income ? up : down}`}>
                 { toUSD(fromGroths(data.value), rates.rate) }
