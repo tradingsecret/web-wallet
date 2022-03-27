@@ -115,7 +115,7 @@ const Transactions: React.FC<TransactionsProps> = ({
   data: transactions,
 }) => {
   const rates = useStore($rate);
-  
+
   return (
     <TransactionsWrap>
       { transactions.map((tx, index) => {

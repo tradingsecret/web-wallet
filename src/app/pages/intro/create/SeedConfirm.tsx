@@ -72,7 +72,7 @@ const SeedConfirm: React.FC = () => {
         <Next
           type="submit"
           onClick={handleSubmit}
-          disabled={!!valid}
+          disabled={!valid}
         />
       </ButtonsWrapper>
     </Window>
