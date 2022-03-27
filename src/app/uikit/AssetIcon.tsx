@@ -3,7 +3,7 @@ import React from 'react';
 import { WalletTotal } from '@core/types';
 
 import {
-  BeamIcon as BeamIconSvg,
+  ArcIcon as BeamIconSvg,
   AssetIcon as AssetIconSvg,
 } from '@app/icons';
 

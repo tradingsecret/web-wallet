@@ -18,7 +18,7 @@ export const getVersionFx = createEffect(getVersion);
 
 export const $version = restore(
   getVersionFx.doneData.map((data) => data), {
-    beam_branch_name: '', beam_version: '',
+        imperium_branch_name: '', imperium_version: '',
   },
 );
 

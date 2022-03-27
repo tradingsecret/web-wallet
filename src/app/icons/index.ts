@@ -12,8 +12,8 @@ import ArrowUpIcon from './icon-arrow-up.svg';
 import ArrowsTowards from './icon-arrows-towards.svg';
 
 import AssetIcon from './icon-asset.svg';
-import BeamIcon from './icon-beam.svg';
-import BeamXIcon from './icon-beamx.svg';
+import ArcIcon from './icon-arc.svg';
+import ArcXIcon from './icon-arcx.svg';
 import VerifiedIcon from './icon-verified.svg';
 
 import EyeIcon from './icon-eye.svg';
@@ -59,8 +59,8 @@ export {
   ArrowsTowards,
 
   AssetIcon,
-  BeamIcon,
-  BeamXIcon,
+  ArcIcon,
+  ArcXIcon,
   VerifiedIcon,
 
   EyeIcon,

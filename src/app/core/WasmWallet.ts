@@ -96,8 +96,8 @@ export default class WasmWallet {
           value: 0,
           updated: new Date().getTime(),
         },
-        dnsSetting: 'wallet-service.beam.mw',
-        ipSetting: '3.222.86.179:20000',
+        dnsSetting: '8.8.8.8',
+        ipSetting: 'imperiumprotocol.com:8200',
         verificatedSetting: {
           state: seedConfirmed,
           isMessageClosed: false,

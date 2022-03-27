@@ -11,7 +11,6 @@ import {
 import {
   Wallet,
   Receive,
-  SendConfirm,
   SendForm,
   Utxo,
   SettingsReport,
@@ -34,7 +33,6 @@ const ROUTES = {
   [View.PROGRESS]: Progress,
   [View.WALLET]: Wallet,
   [View.SEND_FORM]: SendForm,
-  [View.SEND_CONFIRM]: SendConfirm,
   [View.RECEIVE]: Receive,
   [View.UTXO]: Utxo,
   [View.SETTINGS_REPORT]: SettingsReport,

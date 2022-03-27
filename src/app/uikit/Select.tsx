@@ -121,6 +121,17 @@ export const Select: React.FC<SelectProps> = ({
   const array = React.Children.toArray(children);
 
   const disabled = array.length === 1;
+  let initialized = true;
+
+  array.forEach((child) => {
+    if (!child) {
+      initialized = false;
+    }
+  });
+
+  if (!initialized) {
+    return (<></>);
+  }
 
   const options = array.map(
     (child) => {
@@ -149,6 +160,10 @@ export const Select: React.FC<SelectProps> = ({
     const { value: current } = (child as ReactElement).props;
     return value === current;
   });
+
+  if (!selected || !(selected as ReactElement).props) {
+    return (<></>);
+  }
 
   const handleMouseDown = () => {
     setOpened(!opened);

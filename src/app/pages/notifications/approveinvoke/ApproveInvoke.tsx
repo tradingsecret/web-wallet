@@ -184,7 +184,7 @@ const ApproveInvoke = () => {
           <FeeSubtitle>Fee: </FeeSubtitle>
           <FeeValue>
             <AssetIcon asset_id={0} />
-            <FeeLabelStyled>{info.fee} BEAM </FeeLabelStyled>
+            <FeeLabelStyled>{info.fee} ARC </FeeLabelStyled>
           </FeeValue>
         </Fee>
         <TextStyled>{text}</TextStyled>

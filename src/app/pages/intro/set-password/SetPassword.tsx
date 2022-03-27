@@ -143,7 +143,7 @@ const SetPassword = () => {
         <ButtonsWrapper>
           <Back
             type="button"
-            onClick={() => toggleWarning(true)}
+            onClick={handlePrevious}
           />
           <Next type="submit" disabled={!ready} onClick={handleSubmit} />
         </ButtonsWrapper>

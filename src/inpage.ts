@@ -17,7 +17,6 @@ async function setupInpageApi() {
   }).then((api) => {
     global.BeamApi = api;
     window.postMessage('apiInjected', window.origin);
-    console.log('BEAM WALLET API INJECTED');
     return api;
   });
 }

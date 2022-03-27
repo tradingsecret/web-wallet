@@ -89,8 +89,8 @@ export const Funds: React.FC<AssetsProps> = ({ data }) => {
   return (
     <FundsWrap>
       {data.filter((asset) => asset.asset_id === 0)
-        .map(({ asset_id, available, metadata_pairs }) => (
-          <FundsStyled>
+        .map(({ asset_id, available, metadata_pairs }, index) => (
+          <FundsStyled key={index}>
             <FundsStyledLeft>
               <Currency>ARC</Currency>
               <Amount>{fromGroths(available)}</Amount>
