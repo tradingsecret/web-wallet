@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Imperium Web Wallet (Testnet)",
-  "short_name": "Imperium Web Wallet (Testnet)",
-  "description": "Imperium Web Wallet (Testnet)",
+  "name": "Imperium Protocol Blockchain Web Wallet",
+  "short_name": "Imperium Protocol Blockchain Web Wallet",
+  "description": "Imperium Protocol Blockchain Web Wallet",
   "version": "1.0.1",
   "browser_action": {
     "default_popup": "popup.html"
