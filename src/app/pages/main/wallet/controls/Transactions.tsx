@@ -115,8 +115,7 @@ const Transactions: React.FC<TransactionsProps> = ({
   data: transactions,
 }) => {
   const rates = useStore($rate);
-  const statusesText = swapKeysAndValues(swapKeysAndValues(TxStatusToString));
-
+  
   return (
     <TransactionsWrap>
       { transactions.map((tx, index) => {
@@ -150,7 +149,7 @@ const Transactions: React.FC<TransactionsProps> = ({
               )}
             </TransactionRow>
             <TransactionRow>
-              <Status>{statusesText[data.status_string]}</Status>
+              <Status>{TxStatusToString[data.status_string]}</Status>
               {rates && rates.rate && (
               <USDAmount className={`${data.income ? up : down}`}>
                 { toUSD(fromGroths(data.value), rates.rate) }

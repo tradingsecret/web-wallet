@@ -43,7 +43,7 @@ const ImportantWrapper = styled.div`
   font-size: 13px;
   color: #5fe795;
   text-transform: uppercase;
-  padding-top: 60px;
+  padding-top: 30px;
   letter-spacing: 2px;
 `;
 
@@ -66,7 +66,7 @@ const ImportantList = styled.ul`
       padding-right: 5px;
     }
 
-    padding-bottom: 15px;
+    padding-bottom: 5px;
   }
 `;
 
