@@ -150,13 +150,13 @@ const SetPassword = () => {
       </Window>
       <Popup
         visible={warningVisible}
-        title="Return to seed phrase"
+        title="Back to seed phrase screen"
         confirmButton={(
           <ConfirmButton onClick={handleReturnClick} />
             )}
         onCancel={() => toggleWarning(false)}
       >
-        If you return to seed phrase, it would be changed and your local password won’t be saved.
+        ATTENTION: If you go back to the seed phrase screen then it would be changed and the previously saved seed phrase won't fit anymore. And your local password won't be saved as well.
       </Popup>
     </>
   );

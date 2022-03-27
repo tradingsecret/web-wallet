@@ -33,7 +33,7 @@ const RemovePopup: React.FC<RemovePopupProps> = ({
   return (
     <Popup
       visible={visible}
-      title="Remove current wallet"
+      title="DELETE your wallet"
       cancelButton={
         <ButtonCancel onClick={onCancel} />
       }
@@ -51,10 +51,10 @@ const RemovePopup: React.FC<RemovePopupProps> = ({
         />
       ) : (
         <>
-          All data will be erased.
-          Make sure you’ve saved your seed phrase if you want to restore this wallet later on!
-          <br />
-          Are you sure you want to remove your wallet?
+          Are you sure you want to remove your wallet?<br />
+          You are going to delete your current wallet. Before deleting make sure that you have saved the seed phrase for this wallet if you need it later.<br /><br />
+          Please confirm the deleting of this wallet.
+
         </>
       ) }
     </Popup>
