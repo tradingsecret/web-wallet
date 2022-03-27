@@ -13,7 +13,7 @@ const ContainerStyled = styled.div`
   background: url("/assets/wallet/menu/menu_bg.png");
 `;
 
-const ButtonDelete = styled.div`
+const Button = styled.div`
   height: 59px;
   font-size: 20px;
   color: #757575;
@@ -27,28 +27,7 @@ const ButtonDelete = styled.div`
 
   :hover {
     color: #fff;
-  }
-
-  span {
-    display: flex;
-    align-items: center;
-  }
-`;
-
-const ButtonWriteUs = styled.div`
-  height: 59px;
-  background: url("/assets/wallet/menu/hover_button.png");
-  font-size: 20px;
-  color: #757575;
-  font-family: "agency",serif;
-  font-weight: bold;
-  letter-spacing: 1px;
-  justify-content: center;
-  display: flex;
-  cursor: pointer;
-  
-  :hover {
-    color: #fff;
+    background: url("/assets/wallet/menu/hover_button.png");
   }
 
   span {
@@ -69,8 +48,8 @@ const Menu: React.FC<MenuProps> = () => {
 
   return (
     <ContainerStyled>
-      <ButtonDelete onClick={() => toggleWarning(true)}><span>DELETE CURRENT WALLET</span></ButtonDelete>
-      <ButtonWriteUs onClick={ReportClicked}><span>WRITE US</span></ButtonWriteUs>
+      <Button onClick={() => toggleWarning(true)}><span>DELETE CURRENT WALLET</span></Button>
+      <Button onClick={ReportClicked}><span>WRITE US</span></Button>
       <RemovePopup
         visible={warningVisible}
         onCancel={() => toggleWarning(false)}
