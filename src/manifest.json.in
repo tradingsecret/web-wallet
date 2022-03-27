@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Imperium Protocol Blockchain Web Wallet",
   "short_name": "Imperium Protocol Blockchain Web Wallet",
   "description": "Imperium Protocol Blockchain Web Wallet",
